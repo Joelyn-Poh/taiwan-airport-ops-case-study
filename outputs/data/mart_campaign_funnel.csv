@@ -1,0 +1,4 @@
+experiment_arm,assigned_users,crm_sent_users,crm_opened_users,crm_clicked_users,airport_request_users,airport_completed_users,repeat_trip_users,reward_cost_twd
+control,683,683,335,134,130,112,19,0.0
+airport_150,3053,3053,1501,663,862,766,152,112500.0
+bundle_100_100,3088,3088,1448,662,847,725,256,96400.0

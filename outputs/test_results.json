@@ -1,0 +1,92 @@
+[
+  {
+    "test_name": "one_row_per_trip",
+    "failed_rows": 0,
+    "source": "01_trip_lifecycle.sql"
+  },
+  {
+    "test_name": "valid_trips_have_valid_sequence",
+    "failed_rows": 0,
+    "source": "01_trip_lifecycle.sql"
+  },
+  {
+    "test_name": "valid_trips_have_positive_fare",
+    "failed_rows": 0,
+    "source": "01_trip_lifecycle.sql"
+  },
+  {
+    "test_name": "cohort_has_crm_consent",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "cohort_has_one_row_per_user",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "cohort_assignment_and_crm_precede_arrival",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "valid_rewards_do_not_exceed_fare",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "control_has_no_valid_reward",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "valid_reward_trip_user_matches",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "valid_reward_assignment_precedes_trip_request",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "valid_reward_matches_experiment_arm",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "local_reward_follows_first_airport_trip",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "d7_repeat_is_local_trip",
+    "failed_rows": 0,
+    "source": "02_campaign_integrity.sql"
+  },
+  {
+    "test_name": "experiment_has_exactly_one_control_row",
+    "failed_rows": 0,
+    "source": "03_mart_integrity.sql"
+  },
+  {
+    "test_name": "marketplace_rates_in_bounds",
+    "failed_rows": 0,
+    "source": "03_mart_integrity.sql"
+  },
+  {
+    "test_name": "quality_report_has_hard_invalid_records",
+    "failed_rows": 0,
+    "source": "03_mart_integrity.sql"
+  },
+  {
+    "test_name": "marketplace_guardrails_have_valid_status",
+    "failed_rows": 0,
+    "source": "03_mart_integrity.sql"
+  },
+  {
+    "test_name": "budget_status_is_explicit",
+    "failed_rows": 0,
+    "source": "03_mart_integrity.sql"
+  }
+]

@@ -1,0 +1,11 @@
+issue_type,injected_rows,expected_treatment
+duplicate_trip_order,619,keep earliest receipt
+duplicate_event,7269,keep earliest receipt
+out_of_order_lifecycle,558,quarantine trip
+invalid_timestamp,1996,quarantine trip
+invalid_coordinate,522,quarantine trip
+orphan_foreign_key,208,quarantine trip
+financial_integrity,365,quarantine financial record
+campaign_integrity,108,deduplicate or reject reward
+late_arriving_event,4991,retain with warning
+crm_opt_out_send,78,exclude from campaign evidence

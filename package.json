@@ -1,0 +1,12 @@
+{
+  "name": "uber-taiwan-airport-ops-case-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:dashboard": "node src/build_dashboard.mjs"
+  },
+  "dependencies": {
+    "@oai/artifact-tool": "2.8.6"
+  }
+}

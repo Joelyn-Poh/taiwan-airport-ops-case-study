@@ -1,0 +1,31 @@
+{
+  "seed": 20250814,
+  "campaign": {
+    "name": "TPE Arrival to Local",
+    "start_date": "2025-09-01",
+    "end_date": "2025-10-26",
+    "attribution_window_days": 7,
+    "target_population": 18000,
+    "control_share": 0.1,
+    "prior_trip_exclusion_days": 180,
+    "baseline_window_days": 28,
+    "budget_twd": 150000,
+    "budget_alert_pct": 0.15
+  },
+  "sample_scale": {
+    "users": 30000,
+    "drivers": 3000,
+    "baseline_trips": 45000
+  },
+  "dirty_data_rates": {
+    "duplicate_trip_orders": 0.012,
+    "duplicate_events": 0.03,
+    "out_of_order_events": 0.012,
+    "invalid_timestamps": 0.008,
+    "invalid_coordinates": 0.01,
+    "orphan_foreign_keys": 0.004,
+    "financial_integrity_issues": 0.007,
+    "campaign_integrity_issues": 0.006,
+    "late_arriving_events": 0.02
+  }
+}
