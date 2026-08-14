@@ -1,0 +1,10 @@
+CREATE OR REPLACE TABLE raw_users AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_users.csv', header = true);
+CREATE OR REPLACE TABLE raw_drivers AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_drivers.csv', header = true);
+CREATE OR REPLACE TABLE raw_partner_bookings AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_partner_bookings.csv', header = true);
+CREATE OR REPLACE TABLE raw_trip_orders AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_trip_orders.csv', header = true, all_varchar = true);
+CREATE OR REPLACE TABLE raw_trip_events AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_trip_events.csv', header = true, all_varchar = true);
+CREATE OR REPLACE TABLE raw_payments AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_payments.csv', header = true, all_varchar = true);
+CREATE OR REPLACE TABLE raw_campaign_assignments AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_campaign_assignments.csv', header = true, all_varchar = true);
+CREATE OR REPLACE TABLE raw_promo_redemptions AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_promo_redemptions.csv', header = true, all_varchar = true);
+CREATE OR REPLACE TABLE raw_crm_events AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_crm_events.csv', header = true, all_varchar = true);
+CREATE OR REPLACE TABLE raw_supply_hourly AS SELECT * FROM read_csv_auto('{{RAW_DIR}}/raw_supply_hourly.csv', header = true, all_varchar = true);

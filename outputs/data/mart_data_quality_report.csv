@@ -1,0 +1,11 @@
+issue_code,severity,disposition,affected_trip_records,affected_trips
+future_or_unparseable_event_time,hard_invalid,quarantined,1995,1968
+non_monotonic_event_steps,hard_invalid,quarantined,1819,1819
+invalid_event_sequence,hard_invalid,quarantined,1424,1424
+invalid_coordinates,hard_invalid,quarantined,513,513
+payment_exceeds_gross_fare,hard_invalid,quarantined,304,304
+negative_fare,hard_invalid,quarantined,178,178
+orphan_user,hard_invalid,quarantined,104,104
+orphan_driver,hard_invalid,quarantined,104,104
+implausible_speed,hard_invalid,quarantined,25,25
+late_arriving_event,warning,kept_with_warning,4717,4522

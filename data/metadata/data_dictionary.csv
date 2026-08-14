@@ -1,0 +1,72 @@
+table_name,column_name,data_type,description,example
+raw_users,user_id,string,Synthetic rider identifier,U000001
+raw_users,signup_at,timestamptz,Profile creation time,2025-01-08T09:30:00+08:00
+raw_users,home_market,string,Rider home market,JP
+raw_users,language,string,Preferred CRM language,ja-JP
+raw_users,crm_opt_in,boolean,Consent state at profile receipt,true
+raw_users,fraud_exclusion,boolean,Eligibility exclusion flag,false
+raw_users,ingested_at,timestamptz,Warehouse receipt time,2025-01-08T09:35:00+08:00
+raw_drivers,driver_id,string,Synthetic driver identifier,D000001
+raw_drivers,join_at,timestamptz,Driver onboarding time,2024-06-01T09:00:00+08:00
+raw_drivers,service_tier,string,Eligible vehicle service tier,UberX
+raw_drivers,airport_eligible,boolean,Airport trip eligibility,true
+raw_partner_bookings,booking_id,string,Synthetic partner booking identifier,B000001
+raw_partner_bookings,user_id,string,Booked traveller identifier,U000001
+raw_partner_bookings,arrival_at,timestamptz,Booked arrival time at TPE,2025-09-12T09:20:00+08:00
+raw_partner_bookings,partner_name,string,Fictional travel partner,Travel Partner X
+raw_partner_bookings,origin_market,string,Arrival origin market,JP
+raw_partner_bookings,arrival_terminal,string,Arrival terminal,T2
+raw_partner_bookings,booking_status,string,Partner booking status,confirmed
+raw_trip_orders,trip_id,string,Client-side trip creation identifier,T0000001
+raw_trip_orders,user_id,string,Rider requesting the trip,U000001
+raw_trip_orders,driver_id,string,Assigned driver identifier,D000001
+raw_trip_orders,requested_at,timestamptz,Time a rider requested a trip,2025-09-12T10:05:00+08:00
+raw_trip_orders,pickup_lat,double,Pickup latitude,25.0797
+raw_trip_orders,pickup_lng,double,Pickup longitude,121.2342
+raw_trip_orders,dropoff_lat,double,Drop-off latitude,25.0330
+raw_trip_orders,dropoff_lng,double,Drop-off longitude,121.5654
+raw_trip_orders,origin_zone,string,Pickup service zone,TPE_AIRPORT
+raw_trip_orders,destination_zone,string,Drop-off service zone,TAIPEI_CENTRAL
+raw_trip_orders,is_airport_trip,boolean,Whether trip starts at airport,true
+raw_trip_orders,estimated_distance_km,double,Source trip distance estimate,42.5
+raw_trip_orders,gross_fare_twd,double,Pre-reward fare in Taiwan dollars,580
+raw_trip_orders,terminal_status,string,Source terminal status,completed
+raw_trip_orders,cancel_reason,string,Source cancellation reason,driver_no_show
+raw_trip_orders,campaign_arm_at_request,string,Experiment arm visible at request,bundle_100_100
+raw_trip_orders,ingested_at,timestamptz,Warehouse receipt time,2025-09-12T10:06:00+08:00
+raw_trip_events,event_id,string,Source event receipt identifier,E00000001
+raw_trip_events,trip_id,string,Related client-side trip identifier,T0000001
+raw_trip_events,event_type,string,Trip lifecycle event,accepted
+raw_trip_events,event_at,timestamptz,Event occurrence time,2025-09-12T10:08:00+08:00
+raw_trip_events,ingested_at,timestamptz,Warehouse receipt time,2025-09-12T10:13:00+08:00
+raw_trip_events,source,string,Event-producing service,dispatch
+raw_payments,payment_id,string,Payment event identifier,P000001
+raw_payments,trip_id,string,Related trip identifier,T0000001
+raw_payments,payment_type,string,Financial event type,charge
+raw_payments,amount_twd,double,Charge or refund amount in Taiwan dollars,430
+raw_payments,payment_status,string,Financial settlement status,succeeded
+raw_payments,paid_at,timestamptz,Financial event time,2025-09-12T10:40:00+08:00
+raw_campaign_assignments,assignment_id,string,Experiment allocation receipt,A000001
+raw_campaign_assignments,user_id,string,Allocated traveller identifier,U000001
+raw_campaign_assignments,campaign_name,string,Campaign identifier,TPE Arrival to Local
+raw_campaign_assignments,experiment_arm,string,Control or reward treatment,bundle_100_100
+raw_campaign_assignments,assigned_at,timestamptz,Allocation time,2025-09-12T08:00:00+08:00
+raw_campaign_assignments,assignment_status,string,Eligibility allocation state,eligible
+raw_promo_redemptions,redemption_id,string,Promotion application receipt,R000001
+raw_promo_redemptions,trip_id,string,Trip to which a reward is applied,T0000001
+raw_promo_redemptions,user_id,string,Rider redeeming the reward,U000001
+raw_promo_redemptions,promo_code,string,Reward code,TPE100
+raw_promo_redemptions,discount_twd,double,Reward discounted from a trip,100
+raw_promo_redemptions,redeemed_at,timestamptz,Reward application time,2025-09-12T10:06:00+08:00
+raw_crm_events,crm_event_type,string,CRM lifecycle event,sent
+raw_crm_events,crm_event_id,string,CRM event receipt identifier,C000001
+raw_crm_events,user_id,string,CRM recipient identifier,U000001
+raw_crm_events,campaign_name,string,Campaign identifier,TPE Arrival to Local
+raw_crm_events,event_at,timestamptz,CRM event time,2025-09-12T08:01:00+08:00
+raw_crm_events,ingested_at,timestamptz,Warehouse receipt time,2025-09-12T08:02:00+08:00
+raw_supply_hourly,available_drivers,integer,Available drivers at a zone-hour,88
+raw_supply_hourly,requests,integer,Source demand count at a zone-hour,112
+raw_supply_hourly,snapshot_hour,timestamptz,Zone-hour snapshot time,2025-09-12T10:00:00+08:00
+raw_supply_hourly,service_zone,string,Supply snapshot zone,TPE_AIRPORT
+raw_supply_hourly,completed_trips,integer,Source completed-trip count,73
+raw_supply_hourly,ingested_at,timestamptz,Warehouse receipt time,2025-09-12T10:05:00+08:00
