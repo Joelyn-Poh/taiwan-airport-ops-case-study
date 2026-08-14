@@ -33,6 +33,7 @@ Raw data is intentionally imperfect. The cleaning workflow never overwrites raw 
 | `tests/` | Data-quality and business-rule checks |
 | `dashboard/airport_campaign_dashboard.xlsx` | Stakeholder-ready Excel dashboard |
 | `report/final_report.md` and `.pdf` | Traditional Chinese project report and closeout |
+| `report/project_work_analysis_report.md` | Full project rationale, SQL workflow, business analysis, and evidence trail |
 | `report/executive_summary_en.md` | English interview summary |
 | `docs/` | Data model, cleaning rules, metric definitions, campaign and operational documents |
 
