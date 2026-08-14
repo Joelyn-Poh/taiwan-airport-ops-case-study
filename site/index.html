@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A synthetic Uber Taiwan airport operations case study: from dirty ride data to an evidence-backed campaign decision.">
+  <meta name="theme-color" content="#0b2440">
+  <title>From Dirty Ride Data to Operations Decisions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Noto+Sans+TC:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body data-language="en">
+  <!--
+  THESIS: An operations decision earns trust only when every conclusion can be traced back to cleaned data; refuse the generic portfolio dashboard.
+  OWN-WORLD: Cool-gray dossier paper, deep navy ink, square exhibit tabs, fine rules, verification green, and safety orange.
+  STORY: See the decision, follow raw ride data into trusted evidence, inspect experiment and guardrails, then open the SQL and reports.
+  FIRST VIEWPORT: Evidence index left, conclusion and cleaning flow center, fixed decision rail right; the SQL action sits below the decision.
+  FORM: Operations evidence dossier, third grounded direction, seed 6ee356c8.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+  -->
+
+  <a class="skip-link" href="#case-file">
+    <span class="lang lang-en">Skip to case file</span>
+    <span class="lang lang-zh" hidden>跳到專案內容</span>
+  </a>
+
+  <header class="mobile-header">
+    <a class="mobile-brand" href="#summary" aria-label="Operations case study home">OPS / TPE</a>
+    <div class="language-switch" role="group" aria-label="Language">
+      <button type="button" data-set-language="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-language="zh" aria-pressed="false">中文</button>
+    </div>
+  </header>
+
+  <div class="portfolio-shell">
+    <aside class="evidence-index" aria-label="Case evidence index">
+      <div class="index-brand">
+        <span class="brand-mark" aria-hidden="true">OA</span>
+        <div>
+          <strong>Operations Analytics</strong>
+          <span>Portfolio Case File</span>
+        </div>
+      </div>
+
+      <div class="index-title">
+        <span>From Dirty Ride Data</span>
+        <span>to Operations Decisions</span>
+      </div>
+
+      <nav class="case-nav" aria-label="Case sections">
+        <a href="#summary" class="is-active">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5h16M12 4v15M7 8l5-4 5 4M6 11h12"/></svg>
+          </span>
+          <span><span class="lang lang-en">Decision</span><span class="lang lang-zh" hidden>決策</span><small><span class="lang lang-en">Conclusion and gate</span><span class="lang lang-zh" hidden>結論與門檻</span></small></span>
+          <b>01</b>
+        </a>
+        <a href="#cleaning">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 5h14M7 10h10M9 15h6M11 20h2"/></svg>
+          </span>
+          <span><span class="lang lang-en">Data cleaning</span><span class="lang lang-zh" hidden>資料清洗</span><small><span class="lang lang-en">Raw to trusted</span><span class="lang lang-zh" hidden>從原始到可信</span></small></span>
+          <b>02</b>
+        </a>
+        <a href="#experiment">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 3h8M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3M8 15h8"/></svg>
+          </span>
+          <span><span class="lang lang-en">Experiment</span><span class="lang lang-zh" hidden>實驗</span><small><span class="lang lang-en">Incrementality</span><span class="lang lang-zh" hidden>活動增量</span></small></span>
+          <b>03</b>
+        </a>
+        <a href="#marketplace">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 18h16M6 18V9m6 9V5m6 13v-7M4 6l4 2 4-4 4 3 4-3"/></svg>
+          </span>
+          <span>Marketplace<small><span class="lang lang-en">Service guardrails</span><span class="lang lang-zh" hidden>服務品質門檻</span></small></span>
+          <b>04</b>
+        </a>
+        <a href="#budget">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 5h14v16H5zM8 2v6m8-6v6M8 12h8m-8 4h5"/></svg>
+          </span>
+          <span><span class="lang lang-en">Budget</span><span class="lang lang-zh" hidden>預算</span><small><span class="lang lang-en">Spend accountability</span><span class="lang lang-zh" hidden>支出責任</span></small></span>
+          <b>05</b>
+        </a>
+        <a href="#sql-evidence">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M8 4 3 12l5 8M16 4l5 8-5 8M14 3l-4 18"/></svg>
+          </span>
+          <span><span class="lang lang-en">SQL evidence</span><span class="lang lang-zh" hidden>SQL 證據</span><small><span class="lang lang-en">Reproducible work</span><span class="lang lang-zh" hidden>可重現分析</span></small></span>
+          <b>06</b>
+        </a>
+        <a href="#artifacts">
+          <span class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM15 3v5h4M9 13h7m-7 4h7"/></svg>
+          </span>
+          <span><span class="lang lang-en">Reports</span><span class="lang lang-zh" hidden>報告</span><small><span class="lang lang-en">Files and methods</span><span class="lang lang-zh" hidden>檔案與方法</span></small></span>
+          <b>07</b>
+        </a>
+      </nav>
+
+      <div class="docket">
+        <span><span class="lang lang-en">Docket</span><span class="lang lang-zh" hidden>案件編號</span></span>
+        <strong>TPE-ARRIVAL-OPS</strong>
+        <dl>
+          <div><dt><span class="lang lang-en">Period</span><span class="lang lang-zh" hidden>期間</span></dt><dd>2025.09—10</dd></div>
+          <div><dt><span class="lang lang-en">Status</span><span class="lang lang-zh" hidden>狀態</span></dt><dd><span class="status-dot"></span><span class="lang lang-en">Closed</span><span class="lang lang-zh" hidden>已結案</span></dd></div>
+        </dl>
+      </div>
+    </aside>
+
+    <main id="case-file" class="case-file">
+      <div class="case-toolbar">
+        <div class="case-label">
+          <span class="lang lang-en">Operations case file</span>
+          <span class="lang lang-zh" hidden>營運分析案件檔案</span>
+          <span>TPE / 2025</span>
+        </div>
+        <div class="desktop-language language-switch" role="group" aria-label="Language">
+          <button type="button" data-set-language="en" aria-pressed="true">EN</button>
+          <button type="button" data-set-language="zh" aria-pressed="false">中文</button>
+        </div>
+      </div>
+
+      <section id="summary" class="exhibit exhibit-summary" aria-labelledby="summary-title">
+        <div class="exhibit-tab"><span>Exhibit 01</span><span class="lang lang-en">Decision</span><span class="lang lang-zh" hidden>決策</span></div>
+        <div class="summary-grid">
+          <div>
+            <h1 id="summary-title">
+              <span class="lang lang-en">The campaign works.<br>Do not scale it yet.</span>
+              <span class="lang lang-zh" hidden>活動有效，<br>但目前不宜全面擴量。</span>
+            </h1>
+            <p class="summary-lead">
+              <span class="lang lang-en">Both rewards created incremental airport trips. The current design still fails the full operating gate: contribution is negative, airport ETA breached its limit, and reward spend reached 139.3% of budget.</span>
+              <span class="lang lang-zh" hidden>兩種優惠都帶來機場增量行程，但目前仍未通過完整營運門檻：增量貢獻為負、機場 ETA 超標，優惠支出達預算的 139.3%。</span>
+            </p>
+            <div class="summary-actions">
+              <a class="primary-action" href="#sql-evidence">
+                <span class="lang lang-en">Inspect the SQL evidence</span>
+                <span class="lang lang-zh" hidden>查看 SQL 分析證據</span>
+                <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 10h13M11 5l5 5-5 5"/></svg>
+              </a>
+              <a class="text-action" href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study" target="_blank" rel="noreferrer">
+                GitHub repository
+              </a>
+            </div>
+          </div>
+          <div class="decision-proof" aria-label="Decision evidence">
+            <div class="proof-row"><span>Airport 150</span><strong>+8.7 pp</strong><small><span class="lang lang-en">airport conversion</span><span class="lang lang-zh" hidden>機場轉換增量</span></small></div>
+            <div class="proof-row"><span>Bundle 100+100</span><strong>8.3%</strong><small><span class="lang lang-en">D7 local repeat</span><span class="lang lang-zh" hidden>D7 當地回訪率</span></small></div>
+            <div class="proof-row is-breach"><span><span class="lang lang-en">Budget execution</span><span class="lang lang-zh" hidden>預算使用率</span></span><strong>139.3%</strong><small>NT$208,900 / NT$150,000</small></div>
+          </div>
+        </div>
+        <div class="synthetic-note">
+          <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 2 3 5v5c0 4.5 3 7 7 8 4-1 7-3.5 7-8V5zM7 10l2 2 4-4"/></svg>
+          <span class="lang lang-en">Independent university portfolio. All ride, user, driver, partner, and campaign records are synthetic.</span>
+          <span class="lang lang-zh" hidden>大學個人專題作品集。所有行程、乘客、司機、合作夥伴與活動紀錄皆為合成資料。</span>
+        </div>
+      </section>
+
+      <section id="cleaning" class="exhibit" aria-labelledby="cleaning-title">
+        <div class="exhibit-tab"><span>Exhibit 02</span><span class="lang lang-en">Data cleaning</span><span class="lang lang-zh" hidden>資料清洗</span></div>
+        <div class="section-heading">
+          <h2 id="cleaning-title"><span class="lang lang-en">Trust is built before analysis begins.</span><span class="lang lang-zh" hidden>分析開始以前，先把資料變得可信。</span></h2>
+          <p><span class="lang lang-en">Raw ride records were standardized, deduplicated, rebuilt from event sequences, and quarantined when they failed lifecycle, coordinate, finance, or foreign-key checks.</span><span class="lang lang-zh" hidden>原始叫車資料先完成欄位標準化、去重與事件生命週期重建；未通過時序、座標、財務或外鍵檢查的行程會被隔離。</span></p>
+        </div>
+
+        <div class="cleaning-flow" aria-label="Data cleaning flow from 52,222 raw orders to 48,347 trusted trips">
+          <div class="flow-number flow-start"><span class="lang lang-en">Raw order rows</span><span class="lang lang-zh" hidden>原始訂單資料</span><strong>52,222</strong><small><span class="lang lang-en">Untouched source layer</span><span class="lang lang-zh" hidden>保留原始來源</span></small></div>
+          <div class="flow-lines" aria-hidden="true">
+            <svg viewBox="0 0 360 160" preserveAspectRatio="none">
+              <path d="M0 8 C110 8 245 58 360 52"/><path d="M0 20 C120 22 242 60 360 58"/><path d="M0 32 C105 34 250 64 360 64"/><path d="M0 44 C125 48 232 66 360 70"/><path d="M0 56 C98 60 260 72 360 76"/><path d="M0 68 C115 72 248 78 360 82"/><path d="M0 80 C120 82 238 84 360 88"/><path d="M0 92 C110 90 250 92 360 94"/><path d="M0 104 C105 100 255 98 360 100"/><path d="M0 116 C120 108 240 104 360 106"/><path d="M0 128 C110 116 250 112 360 112"/>
+              <path class="quarantine-line" d="M40 136 C150 142 210 150 360 154"/>
+            </svg>
+            <div class="cleaning-gate"><span class="lang lang-en">standardize · deduplicate · validate</span><span class="lang lang-zh" hidden>標準化 · 去重 · 驗證</span></div>
+          </div>
+          <div class="flow-number flow-end"><span class="lang lang-en">Trusted trip lifecycle</span><span class="lang lang-zh" hidden>可信行程生命週期</span><strong>48,347</strong><small>92.6% <span class="lang lang-en">retained</span><span class="lang lang-zh" hidden>保留</span></small></div>
+          <div class="quarantine-box"><span class="lang lang-en">Quarantined after deduplication</span><span class="lang lang-zh" hidden>去重後隔離</span><strong>3,256</strong><small><span class="lang lang-en">records excluded from trip KPI</span><span class="lang lang-zh" hidden>不納入行程 KPI</span></small></div>
+        </div>
+
+        <div class="issue-ledger">
+          <div><span><span class="lang lang-en">Future / unparseable event time</span><span class="lang lang-zh" hidden>未來或無法解析的事件時間</span></span><strong>1,968</strong></div>
+          <div><span><span class="lang lang-en">Non-monotonic event steps</span><span class="lang lang-zh" hidden>事件步驟時間逆序</span></span><strong>1,819</strong></div>
+          <div><span><span class="lang lang-en">Invalid event sequence</span><span class="lang lang-zh" hidden>無效事件順序</span></span><strong>1,424</strong></div>
+          <div><span><span class="lang lang-en">Invalid coordinates</span><span class="lang lang-zh" hidden>無效座標</span></span><strong>513</strong></div>
+          <div><span><span class="lang lang-en">Payment exceeds fare</span><span class="lang lang-zh" hidden>付款高於車資</span></span><strong>304</strong></div>
+          <div><span><span class="lang lang-en">Late-arriving event</span><span class="lang lang-zh" hidden>延遲抵達事件</span></span><strong>4,522 <em><span class="lang lang-en">kept with warning</span><span class="lang lang-zh" hidden>保留並警示</span></em></strong></div>
+        </div>
+      </section>
+
+      <section id="experiment" class="exhibit" aria-labelledby="experiment-title">
+        <div class="exhibit-tab"><span>Exhibit 03</span><span class="lang lang-en">Experiment</span><span class="lang lang-zh" hidden>活動實驗</span></div>
+        <div class="section-heading is-split">
+          <div><h2 id="experiment-title"><span class="lang lang-en">Demand lift is real. Economics still decide.</span><span class="lang lang-zh" hidden>需求增量確實存在，最後仍要回到商業價值。</span></h2></div>
+          <p><span class="lang lang-en">Intent-to-Treat keeps every eligible assigned user in the denominator. Both treatments beat Control, but neither paid back its valid reward cost within seven days.</span><span class="lang lang-zh" hidden>分析採用 Intent-to-Treat，所有合格且已分組的使用者都保留在分母。兩個 Treatment 都優於 Control，但七日貢獻仍不足以負擔有效優惠成本。</span></p>
+        </div>
+
+        <div class="experiment-layout">
+          <div class="comparison-plot" aria-label="Experiment conversion comparison">
+            <div class="plot-head"><span><span class="lang lang-en">Airport conversion</span><span class="lang lang-zh" hidden>機場完成率</span></span><span><span class="lang lang-en">D7 local repeat</span><span class="lang lang-zh" hidden>D7 當地回訪</span></span></div>
+            <div class="plot-row"><b>Control</b><div class="bar-track"><i style="--value:65.6%"></i><span>16.4%</span></div><div class="bar-track repeat"><i style="--value:33.5%"></i><span>2.8%</span></div></div>
+            <div class="plot-row"><b>Airport 150</b><div class="bar-track"><i style="--value:100%"></i><span>25.1%</span></div><div class="bar-track repeat"><i style="--value:60%"></i><span>5.0%</span></div></div>
+            <div class="plot-row"><b>Bundle 100+100</b><div class="bar-track"><i style="--value:93.6%"></i><span>23.5%</span></div><div class="bar-track repeat"><i style="--value:100%"></i><span>8.3%</span></div></div>
+          </div>
+          <div class="increment-ledger">
+            <div><span>Airport 150</span><strong>+8.7 pp</strong><small>95% CI +5.5—11.9 pp</small><em>-NT$42,480</em></div>
+            <div><span>Bundle 100+100</span><strong>+7.1 pp</strong><small>95% CI +3.9—10.2 pp</small><em>-NT$25,592</em></div>
+          </div>
+        </div>
+
+        <div class="analysis-note">
+          <strong><span class="lang lang-en">Judgment</span><span class="lang lang-zh" hidden>分析判斷</span></strong>
+          <p><span class="lang lang-en">Keep a Control holdout. Redesign Bundle first: lower the second-trip reward, add a minimum fare, or secure partner co-funding.</span><span class="lang lang-zh" hidden>保留 Control。下一輪優先調整 Bundle：降低第二趟優惠、設定最低車資，或爭取合作夥伴共同出資。</span></p>
+        </div>
+      </section>
+
+      <section id="marketplace" class="exhibit" aria-labelledby="marketplace-title">
+        <div class="exhibit-tab"><span>Exhibit 04</span><span>Marketplace</span></div>
+        <div class="section-heading">
+          <h2 id="marketplace-title"><span class="lang lang-en">Growth must obey service quality.</span><span class="lang lang-zh" hidden>需求成長必須服從服務品質。</span></h2>
+          <p><span class="lang lang-en">The campaign period was compared with the previous 28 days. A zone fails when P90 pickup ETA rises more than 10% or cancellation rises more than 1 percentage point.</span><span class="lang lang-zh" hidden>活動期與前 28 天基準期比較；P90 接車 ETA 增加超過 10%，或取消率增加超過 1 個百分點，即判定越界。</span></p>
+        </div>
+        <div class="guardrail-ledger" role="table" aria-label="Marketplace guardrails by zone">
+          <div class="guardrail-head" role="row"><span role="columnheader"><span class="lang lang-en">Service zone</span><span class="lang lang-zh" hidden>服務區域</span></span><span role="columnheader">P90 ETA</span><span role="columnheader"><span class="lang lang-en">Cancellation</span><span class="lang lang-zh" hidden>取消率</span></span><span role="columnheader"><span class="lang lang-en">Status</span><span class="lang lang-zh" hidden>狀態</span></span></div>
+          <div role="row" class="is-breach"><strong role="cell">TPE Airport</strong><span role="cell">+15.0%</span><span role="cell">+0.6 pp</span><b role="cell"><span class="lang lang-en">Breach</span><span class="lang lang-zh" hidden>越界</span></b></div>
+          <div role="row"><strong role="cell">Taipei 101</strong><span role="cell">-1.7%</span><span role="cell">-0.7 pp</span><b role="cell"><span class="lang lang-en">Pass</span><span class="lang lang-zh" hidden>通過</span></b></div>
+          <div role="row"><strong role="cell">Taipei Main</strong><span role="cell">-3.4%</span><span role="cell">-1.1 pp</span><b role="cell"><span class="lang lang-en">Pass</span><span class="lang lang-zh" hidden>通過</span></b></div>
+          <div role="row" class="is-breach"><strong role="cell">Ximending</strong><span role="cell">+1.4%</span><span role="cell">+1.7 pp</span><b role="cell"><span class="lang lang-en">Breach</span><span class="lang lang-zh" hidden>越界</span></b></div>
+        </div>
+      </section>
+
+      <section id="budget" class="exhibit" aria-labelledby="budget-title">
+        <div class="exhibit-tab"><span>Exhibit 05</span><span class="lang lang-en">Budget</span><span class="lang lang-zh" hidden>預算</span></div>
+        <div class="budget-layout">
+          <div class="section-heading">
+            <h2 id="budget-title"><span class="lang lang-en">The campaign overspent by NT$58,900.</span><span class="lang lang-zh" hidden>活動超支 NT$58,900。</span></h2>
+            <p><span class="lang lang-en">Valid rewards were reconciled across the cohort's full redemption window, including eligible post-campaign redemptions.</span><span class="lang lang-zh" hidden>有效優惠依完整兌換期限對帳，包含活動結束後仍在合法期限內使用的優惠。</span></p>
+          </div>
+          <div class="budget-figure">
+            <div class="budget-total"><span><span class="lang lang-en">Budget execution</span><span class="lang lang-zh" hidden>預算使用率</span></span><strong>139.3%</strong></div>
+            <div class="budget-track" aria-label="Budget execution 139.3 percent"><i></i><span class="budget-limit">100%</span></div>
+            <div class="budget-values"><span>NT$150,000 <small><span class="lang lang-en">plan</span><span class="lang lang-zh" hidden>預算</span></small></span><span>NT$208,900 <small><span class="lang lang-en">actual</span><span class="lang lang-zh" hidden>實際</span></small></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sql-evidence" class="exhibit" aria-labelledby="sql-title">
+        <div class="exhibit-tab"><span>Exhibit 06</span><span>SQL</span></div>
+        <div class="section-heading is-split">
+          <div><h2 id="sql-title"><span class="lang lang-en">The decision is reproducible.</span><span class="lang lang-zh" hidden>每一項決策都能重新執行與驗證。</span></h2></div>
+          <p><span class="lang lang-en">DuckDB runs the ordered SQL pipeline, injects campaign parameters, executes 18 assertions, and exports decision marts only when every test passes.</span><span class="lang lang-zh" hidden>DuckDB 依序執行 SQL Pipeline、注入活動參數並跑完 18 項測試；全部通過後才輸出決策資料表。</span></p>
+        </div>
+
+        <div class="sql-layout">
+          <ol class="pipeline-steps">
+            <li><span>00—02</span><strong><span class="lang lang-en">Load, standardize, deduplicate</span><span class="lang lang-zh" hidden>載入、標準化、去重</span></strong></li>
+            <li><span>03—04</span><strong><span class="lang lang-en">Quality checks and lifecycle</span><span class="lang lang-zh" hidden>品質檢查與生命週期</span></strong></li>
+            <li><span>05—06</span><strong><span class="lang lang-en">Cohort and funnel</span><span class="lang lang-zh" hidden>受眾與漏斗</span></strong></li>
+            <li><span>07—09</span><strong><span class="lang lang-en">Experiment, marketplace, budget</span><span class="lang lang-zh" hidden>實驗、Marketplace、預算</span></strong></li>
+            <li><span>18/18</span><strong><span class="lang lang-en">Assertions passed</span><span class="lang lang-zh" hidden>SQL 測試全部通過</span></strong></li>
+          </ol>
+          <div class="code-evidence">
+            <div class="code-toolbar"><span>05_campaign_cohort.sql</span><button type="button" class="copy-code" data-copy-target="cohort-code"><span class="lang lang-en">Copy</span><span class="lang lang-zh" hidden>複製</span></button></div>
+            <pre id="cohort-code"><code>WITH eligible_bookings AS (
+  SELECT b.*,
+    row_number() OVER (
+      PARTITION BY b.user_id
+      ORDER BY b.arrival_at, b.booking_id
+    ) AS booking_rank
+  FROM stg_partner_bookings b
+  WHERE b.booking_status = 'confirmed'
+)
+SELECT a.user_id, a.experiment_arm
+FROM stg_campaign_assignments_dedup a
+JOIN eligible_bookings b
+  ON a.user_id = b.user_id
+ AND b.booking_rank = 1
+JOIN stg_users u USING (user_id)
+WHERE u.crm_opt_in
+  AND NOT u.fraud_exclusion
+  AND a.assigned_at &lt;= b.arrival_at;</code></pre>
+          </div>
+        </div>
+        <div class="sql-links">
+          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/tree/main/sql" target="_blank" rel="noreferrer"><span class="lang lang-en">Browse all SQL</span><span class="lang lang-zh" hidden>查看完整 SQL</span></a>
+          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/outputs/test_results.json" target="_blank" rel="noreferrer"><span class="lang lang-en">View 18 test results</span><span class="lang lang-zh" hidden>查看 18 項測試結果</span></a>
+        </div>
+      </section>
+
+      <section id="artifacts" class="exhibit" aria-labelledby="artifacts-title">
+        <div class="exhibit-tab"><span>Exhibit 07</span><span class="lang lang-en">Artifacts</span><span class="lang lang-zh" hidden>專案成果</span></div>
+        <div class="section-heading">
+          <h2 id="artifacts-title"><span class="lang lang-en">Follow the evidence into the repository.</span><span class="lang lang-zh" hidden>從網站繼續查看完整專案證據。</span></h2>
+        </div>
+        <div class="artifact-list">
+          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/report/project_work_analysis_report.md" target="_blank" rel="noreferrer"><span><strong><span class="lang lang-en">Project work analysis</span><span class="lang lang-zh" hidden>專案工作分析報告</span></strong><small><span class="lang lang-en">Rationale, workflow, SQL steps, judgment, conclusion</span><span class="lang lang-zh" hidden>構思、工作過程、SQL、商業判斷與結論</span></small></span><b>MD</b></a>
+          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/report/executive_summary_en.md" target="_blank" rel="noreferrer"><span><strong>Executive summary</strong><small><span class="lang lang-en">One-page English interview brief</span><span class="lang lang-zh" hidden>英文面試摘要</span></small></span><b>EN</b></a>
+          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/raw/main/dashboard/airport_campaign_dashboard.xlsx"><span><strong>Excel operations dashboard</strong><small><span class="lang lang-en">Campaign, marketplace, budget, data quality</span><span class="lang lang-zh" hidden>活動、Marketplace、預算與資料品質</span></small></span><b>XLSX</b></a>
+          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/tree/main/tests" target="_blank" rel="noreferrer"><span><strong><span class="lang lang-en">SQL assertions</span><span class="lang lang-zh" hidden>SQL 驗證測試</span></strong><small><span class="lang lang-en">Lifecycle, campaign, and mart integrity</span><span class="lang lang-zh" hidden>行程、活動與分析資料表完整性</span></small></span><b>18</b></a>
+        </div>
+      </section>
+
+      <footer class="case-footer">
+        <p><span class="lang lang-en">Independent synthetic-data portfolio project. Not affiliated with Uber. No Uber internal data is used.</span><span class="lang lang-zh" hidden>本專案為獨立合成資料作品集，與 Uber 無關，亦未使用任何 Uber 內部資料。</span></p>
+        <a href="#summary"><span class="lang lang-en">Return to decision</span><span class="lang lang-zh" hidden>回到決策</span></a>
+      </footer>
+    </main>
+
+    <aside class="decision-rail" aria-label="Decision rail">
+      <div class="rail-head"><span class="lang lang-en">Decision rail</span><span class="lang lang-zh" hidden>決策軌道</span><b>FINAL</b></div>
+      <div class="decision-stamp"><span class="lang lang-en">Redesign<br>before scale</span><span class="lang lang-zh" hidden>調整方案<br>再擴量</span></div>
+      <div class="rail-evidence">
+        <strong><span class="lang lang-en">Why</span><span class="lang lang-zh" hidden>判斷依據</span></strong>
+        <ul>
+          <li class="pass"><span>Airport 150 +8.7 pp</span></li>
+          <li class="pass"><span>Bundle D7 8.3%</span></li>
+          <li class="breach"><span><span class="lang lang-en">TPE ETA +15.0%</span><span class="lang lang-zh" hidden>TPE ETA +15.0%</span></span></li>
+          <li class="breach"><span><span class="lang lang-en">Budget 139.3%</span><span class="lang lang-zh" hidden>預算 139.3%</span></span></li>
+          <li class="pass"><span>18 / 18 SQL tests</span></li>
+        </ul>
+      </div>
+      <div class="rail-actions">
+        <strong><span class="lang lang-en">Next move</span><span class="lang lang-zh" hidden>下一步</span></strong>
+        <ol>
+          <li><span class="lang lang-en">Keep Control</span><span class="lang lang-zh" hidden>保留 Control</span></li>
+          <li><span class="lang lang-en">Lower Bundle cost</span><span class="lang lang-zh" hidden>降低 Bundle 成本</span></li>
+          <li><span class="lang lang-en">Secure partner funding</span><span class="lang lang-zh" hidden>爭取合作夥伴出資</span></li>
+          <li><span class="lang lang-en">Pace CRM by ETA</span><span class="lang lang-zh" hidden>依 ETA 控制 CRM</span></li>
+        </ol>
+      </div>
+      <a class="rail-link" href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/report/project_work_analysis_report.md" target="_blank" rel="noreferrer"><span class="lang lang-en">Open full analysis</span><span class="lang lang-zh" hidden>開啟完整分析報告</span><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
+    </aside>
+  </div>
+
+  <div class="copy-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

@@ -4,6 +4,8 @@
 
 An independent, synthetic-data portfolio project for an Uber Taiwan Mobility Operations Specialist interview. The case asks how an airport travel partnership should target inbound travelers, select rewards, and protect marketplace health.
 
+**Website:** [Explore the bilingual case study](https://imkimfull.github.io/uber-taiwan-airport-ops-case-study/)
+
 > **Business question:** With a fixed eight-week budget, which arriving travelers should receive which airport reward in order to create incremental trips and contribution without harming pickup reliability?
 
 ![Dashboard preview](dashboard/screenshots/dashboard_preview.png)
@@ -33,6 +35,7 @@ Raw data is intentionally imperfect. The cleaning workflow never overwrites raw 
 | `tests/` | Data-quality and business-rule checks |
 | `dashboard/airport_campaign_dashboard.xlsx` | Stakeholder-ready Excel dashboard |
 | `report/final_report.md` and `.pdf` | Traditional Chinese project report and closeout |
+| `report/project_work_analysis_report.md` | Full project rationale, SQL workflow, business analysis, and evidence trail |
 | `report/executive_summary_en.md` | English interview summary |
 | `docs/` | Data model, cleaning rules, metric definitions, campaign and operational documents |
 

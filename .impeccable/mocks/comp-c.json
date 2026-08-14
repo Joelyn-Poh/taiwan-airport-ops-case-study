@@ -1,0 +1,5 @@
+{
+  "title": "Dossier overview",
+  "prompt_summary": "A wide dossier summary with decision, evidence chain, experiment, guardrails, budget, and SQL artifacts.",
+  "approved": false
+}
