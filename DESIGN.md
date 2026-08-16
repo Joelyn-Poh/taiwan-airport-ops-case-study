@@ -4,6 +4,7 @@ description: An auditable operations evidence dossier that traces synthetic airp
 colors:
   deep-navy-ink: "#030506"
   layered-navy: "#183b5c"
+  menu-state: "#111922"
   dossier-paper: "#f3f4f1"
   cool-paper: "#e8ecec"
   cool-paper-deep: "#dbe1e2"
@@ -16,6 +17,10 @@ colors:
   verification-green-pale: "#dfeee6"
   focus-blue: "#1769aa"
 typography:
+  base:
+    fontSize: "17px"
+    compactFontSize: "16px"
+    lineHeight: 1.7
   display:
     fontFamily: '"Barlow Condensed", "Noto Sans TC", sans-serif'
     fontSize: "clamp(3.3rem, 6vw, 6rem)"
