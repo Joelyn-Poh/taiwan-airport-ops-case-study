@@ -2,9 +2,11 @@
 
 ## An Airport Travel Partnership SQL Case Study
 
-An independent, synthetic-data portfolio project for an Uber Taiwan Mobility Operations Specialist interview. The case asks how an airport travel partnership should target inbound travelers, select rewards, and protect marketplace health.
+An independent, synthetic-data portfolio project about ride-hailing platform operations. The case asks how an airport travel partnership should target inbound travelers, select rewards, and protect marketplace health.
 
-**Website:** [Explore the bilingual case study](https://imkimfull.github.io/uber-taiwan-airport-ops-case-study/)
+**Website:** [Explore the student-friendly Traditional Chinese report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
+
+**Professional English version:** [Open the operations evidence portfolio](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
 > **Business question:** With a fixed eight-week budget, which arriving travelers should receive which airport reward in order to create incremental trips and contribution without harming pickup reliability?
 

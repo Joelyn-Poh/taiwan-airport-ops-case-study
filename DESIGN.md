@@ -1,5 +1,5 @@
 ---
-name: Uber Taiwan Airport Operations Case Study
+name: Taiwan Airport Ride-Hailing Operations Case Study
 description: An auditable operations evidence dossier that traces synthetic airport ride data into a guarded campaign decision.
 colors:
   deep-navy-ink: "#0b2440"
@@ -97,7 +97,7 @@ components:
     padding: "0.4rem 0.7rem"
 ---
 
-# Design System: Uber Taiwan Airport Operations Case Study
+# Design System: Taiwan Airport Ride-Hailing Operations Case Study
 
 ## Overview
 

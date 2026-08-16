@@ -1,7 +1,7 @@
 ---
 version: 1
 slug: "index-html"
-primary_target: "site/index.html"
+primary_target: "site/portfolio/index.html"
 related_targets: ["site/styles.css","site/app.js"]
 ---
 
@@ -9,14 +9,14 @@ related_targets: ["site/styles.css","site/app.js"]
 
 ## Scope and mode
 
-- Surface: `site/index.html`
+- Surface: `site/portfolio/index.html`
 - Mode: Experience with a Read-oriented evidence path
 - Default language: English
 - Alternate language: Traditional Chinese, switched in page without navigation
 
 ## Audience, job, and action
 
-- Primary audience: Uber Taiwan Mobility hiring manager or interviewer.
+- Primary audience: mobility operations hiring manager, interviewer, instructor, or general reader.
 - Job: understand the recommendation quickly, judge the candidate's operations reasoning, and verify the evidence.
 - Primary action: inspect the SQL evidence and complete work-analysis report.
 - Secondary actions: open the English summary, dashboard, tests, and GitHub repository.
@@ -25,7 +25,7 @@ related_targets: ["site/styles.css","site/app.js"]
 
 - Lead with the verified decision: the campaign creates demand but the current reward design should not be fully scaled.
 - Use only verified metrics from project outputs.
-- Label all operational data as synthetic and state that the project is not affiliated with Uber.
+- Label all operational data as synthetic and state that the project does not represent any real ride-hailing platform.
 - Static HTML, CSS, and JavaScript suitable for GitHub Pages.
 - Keyboard accessible, responsive, reduced-motion aware, and readable without JavaScript except for language switching enhancements.
 

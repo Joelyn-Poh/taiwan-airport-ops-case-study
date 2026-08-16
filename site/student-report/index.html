@@ -53,9 +53,9 @@
       </nav>
 
       <div class="rail-links">
-        <a href="../">返回作品集主頁</a>
-        <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/report/student_project_report_zh-TW.md">閱讀 Markdown</a>
-        <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study">查看 GitHub</a>
+        <a href="../portfolio/">查看英文專業版</a>
+        <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/report/student_project_report_zh-TW.md">閱讀 Markdown</a>
+        <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study">查看 GitHub</a>
       </div>
     </aside>
 
@@ -88,7 +88,7 @@
           <li><span>04</span><b>做決定</b><small>效果、成本、服務一起看</small></li>
         </ol>
 
-        <p class="disclosure">本專題使用合成資料，並非 Uber 內部資料；本作品與 Uber 無合作或隸屬關係。</p>
+        <p class="disclosure">本專題使用合成資料，不代表任何真實叫車平台，也未使用公司的內部資料。</p>
       </section>
 
       <section class="paper-section" id="idea" aria-labelledby="idea-title">
@@ -332,7 +332,7 @@
         <div class="limitations">
           <h3>專題限制</h3>
           <ul>
-            <li>所有資料均為合成資料，不能代表 Uber 真實營運結果。</li>
+            <li>所有資料均為合成資料，不能代表任何真實叫車平台的營運結果。</li>
             <li>沒有納入天氣、航班延誤、其他交通工具或競爭平台價格。</li>
             <li>沒有真實合作夥伴成本及客服案件資料。</li>
             <li>分析期間只有八週，無法判斷更長期留存。</li>
@@ -368,7 +368,7 @@ FROM read_csv_auto(
   header = true,
   all_varchar = true
 );</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/00_load_raw.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/00_load_raw.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -384,7 +384,7 @@ FROM read_csv_auto(
   try_cast(gross_fare_twd AS DOUBLE) AS gross_fare_twd,
   lower(trim(terminal_status)) AS terminal_status
 FROM raw_trip_orders;</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/01_standardize_raw_data.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/01_standardize_raw_data.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -396,7 +396,7 @@ FROM raw_trip_orders;</code></pre>
   PARTITION BY trip_id
   ORDER BY ingested_at
 ) AS row_num</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/02_deduplicate.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/02_deduplicate.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -415,7 +415,7 @@ JOIN stg_payments p ON o.trip_id = p.trip_id
 GROUP BY o.trip_id, o.gross_fare_twd
 HAVING o.gross_fare_twd &lt; 0
     OR sum(p.amount_twd) &gt; o.gross_fare_twd;</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/03_quality_checks.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/03_quality_checks.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -431,7 +431,7 @@ HAVING o.gross_fare_twd &lt; 0
   min(event_at) FILTER (WHERE event_type = 'completed') AS completed_at
 FROM stg_trip_events_dedup
 GROUP BY trip_id;</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/04_trip_lifecycle.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/04_trip_lifecycle.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -453,7 +453,7 @@ AND NOT EXISTS (
     AND f.requested_at >= a.assigned_at - INTERVAL '180 days'
     AND f.requested_at &lt; a.assigned_at
 );</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/05_campaign_cohort.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/05_campaign_cohort.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -469,7 +469,7 @@ AND NOT EXISTS (
   count(*) FILTER (WHERE airport_completed) AS completed_users
 FROM campaign_users
 GROUP BY experiment_arm;</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/06_campaign_funnel.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/06_campaign_funnel.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -485,7 +485,7 @@ GROUP BY experiment_arm;</code></pre>
   / nullif(g.assigned_users, 0) - c.p0)
   * g.assigned_users
   AS incremental_completed_trips</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/07_experiment_results.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/07_experiment_results.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -502,7 +502,7 @@ GROUP BY experiment_arm;</code></pre>
 FROM fct_trip_lifecycle
 WHERE valid_for_trip_kpi
 GROUP BY 1, 2;</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/08_marketplace_health.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/08_marketplace_health.sql">查看完整 SQL</a>
             </div>
           </details>
 
@@ -518,7 +518,7 @@ CASE
   WHEN cumulative_spend_twd &gt; planned_spend_twd * 1.15 THEN 'alert_over_pace'
   ELSE 'on_track'
 END AS budget_status</code></pre>
-              <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/sql/09_quality_and_reconciliation.sql">查看完整 SQL</a>
+              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/09_quality_and_reconciliation.sql">查看完整 SQL</a>
             </div>
           </details>
         </div>
@@ -526,7 +526,7 @@ END AS budget_status</code></pre>
         <div class="sql-summary">
           <h3>SQL 在這份專題中的作用</h3>
           <p>SQL 不只用來算數字，也記錄每一筆資料為什麼保留、為什麼隔離，以及每一個指標如何產生。只要重新執行相同流程，就能重現相同結果。</p>
-          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/tree/main/sql">查看全部 SQL 檔案</a>
+          <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/tree/main/sql">查看全部 SQL 檔案</a>
         </div>
       </section>
 
@@ -546,9 +546,9 @@ END AS budget_status</code></pre>
         </div>
 
         <div class="closing-links">
-          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study/blob/main/report/student_project_report_zh-TW.md"><span>完整文字版</span><strong>閱讀 Markdown 報告 →</strong></a>
-          <a href="https://github.com/imkimfull/uber-taiwan-airport-ops-case-study"><span>分析原始檔</span><strong>前往 GitHub Repository →</strong></a>
-          <a href="../"><span>面試作品集</span><strong>返回英文主網站 →</strong></a>
+          <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/report/student_project_report_zh-TW.md"><span>完整文字版</span><strong>閱讀 Markdown 報告 →</strong></a>
+          <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study"><span>分析原始檔</span><strong>前往 GitHub Repository →</strong></a>
+          <a href="../portfolio/"><span>英文專業版</span><strong>查看完整分析網站 →</strong></a>
         </div>
       </section>
 

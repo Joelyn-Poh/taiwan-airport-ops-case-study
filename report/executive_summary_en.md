@@ -2,7 +2,7 @@
 
 ## From Dirty Ride Data to Operations Decisions
 
-An independent, synthetic-data university portfolio project for the Uber Taiwan Mobility Operations Specialist role.
+An independent, synthetic-data university portfolio project about ride-hailing platform operations.
 
 ### Decision
 
@@ -23,4 +23,4 @@ Do not fully scale either current reward. Keep a Control holdout, reduce the sub
 - `report/`: Traditional Chinese closeout report and PDF.
 - `docs/`: campaign brief, launch checklist, monitoring playbook, source notes, and definitions.
 
-All operational records are synthetic. This repository is not affiliated with Uber.
+All operational records are synthetic and do not represent any real ride-hailing platform.

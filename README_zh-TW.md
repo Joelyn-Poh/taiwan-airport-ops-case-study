@@ -2,9 +2,11 @@
 
 ## 桃園機場旅遊合作 SQL 專題
 
-這是一份以 Uber Taiwan Mobility Operations Specialist 職務為目標的個人大學專題。專題以合成資料模擬「旅客抵達桃園機場後，透過旅遊合作夥伴與 CRM 取得叫車優惠」的真實營運情境，從資料清洗、受眾圈選、活動評估到供需風險控管，產出可重跑的 SQL、Excel Dashboard 與完整結案報告。
+這是一份以叫車平台營運分析為主題的個人大學專題。專題以合成資料模擬「旅客抵達桃園機場後，透過旅遊合作夥伴與 CRM 取得叫車優惠」的營運情境，從資料清洗、受眾圈選、活動評估到供需風險控管，產出可重跑的 SQL、Excel Dashboard 與完整結案報告。
 
-**網站版：**[查看英文為主、可切換繁體中文的專題網站](https://imkimfull.github.io/uber-taiwan-airport-ops-case-study/)
+**網站版：**[查看大學生白話版專題網站](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
+
+**英文專業版：**[查看營運分析作品集](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
 > 核心問題：在固定八週預算下，應該提供哪一種機場叫車優惠，才能增加完成行程與後續回訪，同時不犧牲機場接送品質？
 
@@ -43,7 +45,7 @@ python src/build_report.py
 
 ## 重要說明
 
-所有人、司機、行程、合作夥伴與結果皆為合成資料。本專題不代表 Uber，也不使用任何 Uber 內部資料或真實業績。
+所有乘客、司機、行程、合作夥伴與結果皆為合成資料。本專題不代表任何真實叫車平台，也不使用任何公司的內部資料或真實業績。
 
 ## 主要報告
 
