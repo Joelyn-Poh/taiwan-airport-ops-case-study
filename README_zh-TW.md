@@ -4,9 +4,9 @@
 
 這是一份以叫車平台營運分析為主題的個人學習專題。專題以合成資料模擬「旅客抵達桃園機場後，透過旅遊合作夥伴與 CRM 取得叫車優惠」的營運情境，從資料清洗、受眾圈選、活動評估到供需風險控管，產出可重跑的 SQL、Excel Dashboard 與營運結論網站。
 
-**網站版：**[查看個人學習專題網站](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
+**英文白話版（預設）：**[查看英文個人學習專題](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
 
-**英文白話版：**[查看英文個人學習專題](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/en/)
+**中文版：**[查看中文個人學習專題](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/student-report/)
 
 **英文專業版：**[查看營運分析作品集](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 

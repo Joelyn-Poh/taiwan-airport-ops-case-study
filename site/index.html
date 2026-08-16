@@ -1,204 +1,179 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="桃園機場旅客叫車優惠分析：一份以合成資料與 SQL 完成的個人學習專題報告。">
-  <title>個人學習專題｜桃園機場叫車優惠分析</title>
+  <meta name="description" content="A plain-language personal learning project about airport ride-hailing campaign operations, synthetic data, and SQL analysis.">
+  <title>Personal Learning Project | Airport Ride-Hailing Campaign Analysis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Noto+Sans+TC:wght@400;500;600;700&family=Roboto+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="student-report/styles.css">
-</head><body><!--
-  THESIS: 一份先讓人看懂、再讓人查證的個人學習專題報告；拒絕把內容切成專業儀表板。
-  OWN-WORLD: 延續深藍、冷灰紙張與方正細線，改寫成專題繳交本、章節標籤與 SQL 實驗紀錄。
-  STORY: 讀者先理解問題，再跟著資料清理與分析推演，最後自行查核 SQL 與結論。
-  FIRST VIEWPORT: 左側課程資料與章節索引，右側是題目、白話問題、四步摘要及結論便條。
-  FORM: Coursework Binder，結構候選第 5，seed c22cc7dc。
-  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
-  -->
-
-  <a class="skip-link" href="#report">跳到報告內容</a>
+</head>
+<body class="plain-en">
+  <a class="skip-link" href="#report">Skip to the report</a>
 
   <header class="mobile-header">
-    <a href="#top" aria-label="回到報告頂端">個人學習專題</a>
+    <a href="#top" aria-label="Back to the top">Personal Learning Project</a>
     <div class="mobile-actions">
-      <a class="mobile-language" href="en/" lang="en" hreflang="en">EN</a>
-      <button class="contents-toggle" type="button" aria-expanded="false" aria-controls="chapter-index">章節目錄</button>
+      <a class="mobile-language" href="student-report/" lang="zh-Hant" hreflang="zh-Hant">中文</a>
+      <button class="contents-toggle" type="button" aria-expanded="false" aria-controls="chapter-index">Contents</button>
     </div>
   </header>
 
   <div class="reading-progress" aria-hidden="true"><span></span></div>
 
   <div class="report-shell" id="top">
-    <aside class="chapter-rail" id="chapter-index" aria-label="報告章節">
+    <aside class="chapter-rail" id="chapter-index" aria-label="Report chapters">
       <div class="course-card">
         <span class="eyebrow">Personal Learning Project</span>
-        <strong>營運資料分析</strong>
+        <strong>Operations Data Analysis</strong>
         <dl>
-          <div><dt>主題</dt><dd>機場叫車優惠</dd></div>
-          <div><dt>方法</dt><dd>SQL / 合成資料</dd></div>
-          <div><dt>狀態</dt><dd>專題結案</dd></div>
+          <div><dt>Topic</dt><dd>Airport ride rewards</dd></div>
+          <div><dt>Method</dt><dd>SQL / synthetic data</dd></div>
+          <div><dt>Status</dt><dd>Case completed</dd></div>
         </dl>
       </div>
 
-      <div class="language-switch" aria-label="語言版本">
-        <span aria-current="page">中文</span>
-        <a href="en/" lang="en" hreflang="en">EN</a>
+      <div class="language-switch" aria-label="Language versions">
+        <a href="student-report/" lang="zh-Hant" hreflang="zh-Hant">中文</a>
+        <span aria-current="page">EN</span>
       </div>
 
-      <nav class="chapter-nav" aria-label="章節導覽">
-        <a href="#idea" class="is-active"><span>01</span><b>專題構想</b></a>
-        <a href="#goal"><span>02</span><b>設定目標</b></a>
-        <a href="#data"><span>03</span><b>資料設計</b></a>
-        <a href="#process"><span>04</span><b>推演過程</b></a>
-        <a href="#result"><span>05</span><b>分析結果</b></a>
-        <a href="#conclusion"><span>06</span><b>結論建議</b></a>
-        <a href="#sql"><span>07</span><b>SQL 指令</b></a>
-        <a href="#reflection"><span>08</span><b>專題心得</b></a>
+      <nav class="chapter-nav" aria-label="Chapter navigation">
+        <a href="#idea" class="is-active"><span>01</span><b>Project idea</b></a>
+        <a href="#goal"><span>02</span><b>Goal and rules</b></a>
+        <a href="#data"><span>03</span><b>Data design</b></a>
+        <a href="#process"><span>04</span><b>Analysis process</b></a>
+        <a href="#result"><span>05</span><b>Results</b></a>
+        <a href="#conclusion"><span>06</span><b>Recommendation</b></a>
+        <a href="#sql"><span>07</span><b>SQL steps</b></a>
+        <a href="#reflection"><span>08</span><b>What I learned</b></a>
       </nav>
-
     </aside>
 
     <main id="report" class="report">
       <section class="cover paper-section" aria-labelledby="report-title">
         <div class="cover-meta">
-          <span>個人學習專題</span>
-          <span>資料分析 × 營運判斷</span>
-          <span>2025 模擬案例</span>
+          <span>Personal learning project</span>
+          <span>Data analysis × operations judgment</span>
+          <span>2025 simulated case</span>
         </div>
 
         <div class="cover-grid">
           <div>
-            <p class="chapter-kicker">桃園機場旅客叫車優惠分析</p>
-            <h1 id="report-title">從雜亂的叫車資料，找到可以執行的答案</h1>
-            <p class="cover-question">發優惠真的能讓更多旅客叫車嗎？增加的行程，是否值得付出優惠成本？</p>
+            <p class="chapter-kicker">Taoyuan Airport ride-hailing reward analysis</p>
+            <h1 id="report-title">Turning messy ride data into a decision we can act on</h1>
+            <p class="cover-question">Do rewards really create more rides, and are those extra rides worth the cost?</p>
           </div>
 
-          <aside class="conclusion-note" aria-label="專題一句話結論">
-            <span>一句話結論</span>
-            <strong>活動有效，<br>但先不要全面推出。</strong>
-            <p>行程增加了，但優惠成本、預算與機場等車時間都沒有通過標準。</p>
+          <aside class="conclusion-note" aria-label="One-sentence conclusion">
+            <span>One-sentence conclusion</span>
+            <strong>The campaign worked,<br>but do not scale it yet.</strong>
+            <p>Trips increased, but reward cost, budget control, and airport wait time all missed the operating standard.</p>
           </aside>
         </div>
 
-        <ol class="project-route" aria-label="專題進行方式">
-          <li><span>01</span><b>想問題</b><small>優惠是否值得？</small></li>
-          <li><span>02</span><b>整理資料</b><small>先排除無效紀錄</small></li>
-          <li><span>03</span><b>比較方案</b><small>用 Control 當基準</small></li>
-          <li><span>04</span><b>做決定</b><small>效果、成本、服務一起看</small></li>
+        <ol class="project-route" aria-label="Project approach">
+          <li><span>01</span><b>Ask</b><small>Is the reward worth it?</small></li>
+          <li><span>02</span><b>Clean</b><small>Remove invalid records first</small></li>
+          <li><span>03</span><b>Compare</b><small>Use Control as the baseline</small></li>
+          <li><span>04</span><b>Decide</b><small>Check effect, cost, and service</small></li>
         </ol>
 
-        <p class="disclosure">本專題使用合成資料，不代表任何真實叫車平台，也未使用公司的內部資料。</p>
+        <p class="disclosure">This project uses synthetic data. It does not represent a real ride-hailing platform and does not use any company's internal data.</p>
       </section>
 
       <section class="paper-section" id="idea" aria-labelledby="idea-title">
         <header class="section-head">
           <span class="chapter-number">01</span>
-          <div>
-            <p class="chapter-kicker">專題構想</p>
-            <h2 id="idea-title">為什麼選擇這個題目？</h2>
-          </div>
+          <div><p class="chapter-kicker">Project idea</p><h2 id="idea-title">Why did I choose this topic?</h2></div>
         </header>
 
         <div class="reading-copy">
-          <p class="lead">我把自己設定成叫車平台的營運分析人員，模擬平台和旅遊業者合作，向抵達桃園機場的旅客發送叫車優惠。</p>
-          <p>一般活動報告常只回答「訂單有沒有增加」，但這還不夠。如果活動讓訂單變多，卻同時造成虧損、超支或等車時間變長，平台仍然不應該直接擴大活動。</p>
+          <p class="lead">I placed myself in the role of an operations analyst at a ride-hailing platform. The simulated business partners with a travel company and sends ride rewards to travelers arriving at Taoyuan Airport.</p>
+          <p>A basic campaign report might only ask whether orders increased. That is not enough. If more orders also create losses, overspending, or longer passenger waits, the platform should not scale the campaign.</p>
         </div>
 
-        <div class="question-board" aria-label="專題主要問題">
-          <div><span>問題 A</span><strong>有沒有效？</strong><p>優惠組是否比沒有優惠的 Control 組多出完成行程？</p></div>
-          <div><span>問題 B</span><strong>有沒有賺？</strong><p>新增收益是否足以支付優惠成本？</p></div>
-          <div><span>問題 C</span><strong>現場接得住嗎？</strong><p>司機供給、接車時間與取消率是否仍在合理範圍？</p></div>
+        <div class="question-board" aria-label="Main project questions">
+          <div><span>Question A</span><strong>Did it work?</strong><p>Did the reward groups complete more airport rides than the no-reward Control group?</p></div>
+          <div><span>Question B</span><strong>Did it pay back?</strong><p>Was the added contribution enough to cover the reward cost?</p></div>
+          <div><span>Question C</span><strong>Could operations handle it?</strong><p>Did driver supply, pickup time, and cancellation remain within acceptable limits?</p></div>
         </div>
 
         <div class="scenario-strip">
-          <span>假設情境</span>
-          <p>旅遊合作夥伴提供即將抵達桃園機場的旅客資料，平台在旅客抵達前透過 CRM（顧客訊息管理系統）發送訊息，並追蹤抵達後七天內的叫車行為。</p>
+          <span>Scenario</span>
+          <p>A travel partner supplies confirmed arrival bookings. Before arrival, the platform sends a CRM message and then observes ride behavior for seven days.</p>
         </div>
       </section>
 
       <section class="paper-section" id="goal" aria-labelledby="goal-title">
         <header class="section-head">
           <span class="chapter-number">02</span>
-          <div>
-            <p class="chapter-kicker">設定目標</p>
-            <h2 id="goal-title">活動怎麼設計？成功怎麼判斷？</h2>
-          </div>
+          <div><p class="chapter-kicker">Goal and rules</p><h2 id="goal-title">How was the campaign designed, and what counted as success?</h2></div>
         </header>
 
         <div class="basic-facts">
-          <div><span>活動期間</span><strong>2025.09.01—10.26</strong></div>
-          <div><span>觀察期間</span><strong>旅客抵達後 7 天</strong></div>
-          <div><span>活動預算</span><strong>NT$150,000</strong></div>
+          <div><span>Campaign period</span><strong>2025.09.01—10.26</strong></div>
+          <div><span>Observation window</span><strong>7 days after arrival</strong></div>
+          <div><span>Campaign budget</span><strong>NT$150,000</strong></div>
         </div>
 
-        <div class="scheme-table" role="table" aria-label="活動方案比較">
-          <div class="scheme-row scheme-head" role="row">
-            <span role="columnheader">組別</span><span role="columnheader">比例</span><span role="columnheader">方案</span><span role="columnheader">想確認的事</span>
-          </div>
-          <div class="scheme-row" role="row">
-            <strong role="cell">Control</strong><span role="cell">10%</span><span role="cell">不提供車資優惠</span><span role="cell">原本就會叫車的人有多少？</span>
-          </div>
-          <div class="scheme-row" role="row">
-            <strong role="cell">Airport 150</strong><span role="cell">45%</span><span role="cell">第一趟機場行程折 NT$150</span><span role="cell">較高單次優惠能否提高首趟轉換？</span>
-          </div>
-          <div class="scheme-row" role="row">
-            <strong role="cell">Bundle 100+100</strong><span role="cell">45%</span><span role="cell">機場與七天內一般行程各折 NT$100</span><span role="cell">兩段優惠能否帶來再次使用？</span>
-          </div>
+        <div class="scheme-table" role="table" aria-label="Campaign groups">
+          <div class="scheme-row scheme-head" role="row"><span role="columnheader">Group</span><span role="columnheader">Share</span><span role="columnheader">Offer</span><span role="columnheader">What it tests</span></div>
+          <div class="scheme-row" role="row"><strong role="cell">Control</strong><span role="cell">10%</span><span role="cell">No ride discount</span><span role="cell">How many travelers would ride without an offer?</span></div>
+          <div class="scheme-row" role="row"><strong role="cell">Airport 150</strong><span role="cell">45%</span><span role="cell">NT$150 off the first airport ride</span><span role="cell">Can one larger reward improve first-ride conversion?</span></div>
+          <div class="scheme-row" role="row"><strong role="cell">Bundle 100+100</strong><span role="cell">45%</span><span role="cell">NT$100 off the airport ride and one local ride</span><span role="cell">Can a two-step offer encourage a second use?</span></div>
         </div>
 
-        <h3>五個成功條件</h3>
+        <h3>Five success conditions</h3>
         <ol class="goal-list">
-          <li><span>01</span><p>優惠組的機場叫車完成率高於 Control。</p></li>
-          <li><span>02</span><p>增加的收益高於優惠成本。</p></li>
-          <li><span>03</span><p>桃園機場 P90 接車時間增加不超過 10%。</p></li>
-          <li><span>04</span><p>取消率增加不超過 1 個百分點。</p></li>
-          <li><span>05</span><p>活動支出不超過 NT$150,000。</p></li>
+          <li><span>01</span><p>Airport completion is higher than Control.</p></li>
+          <li><span>02</span><p>Added contribution is higher than reward cost.</p></li>
+          <li><span>03</span><p>Taoyuan Airport P90 pickup time rises by no more than 10%.</p></li>
+          <li><span>04</span><p>Cancellation rises by no more than 1 percentage point.</p></li>
+          <li><span>05</span><p>Total campaign spend stays within NT$150,000.</p></li>
         </ol>
 
-        <p class="plain-note"><strong>P90 接車時間是什麼？</strong> 可以白話理解成：100 趟行程中，大約有 90 趟能在這個時間內接到乘客。它比平均時間更能反映等很久的旅客。</p>
+        <p class="plain-note"><strong>What is P90 pickup time?</strong> In plain language, about 90 out of 100 rides are picked up within this time. It shows long waits better than a simple average.</p>
       </section>
 
       <section class="paper-section" id="data" aria-labelledby="data-title">
         <header class="section-head">
           <span class="chapter-number">03</span>
-          <div>
-            <p class="chapter-kicker">資料設計</p>
-            <h2 id="data-title">為什麼要故意放進錯誤資料？</h2>
-          </div>
+          <div><p class="chapter-kicker">Data design</p><h2 id="data-title">Why did I deliberately add bad records?</h2></div>
         </header>
 
         <div class="reading-copy">
-          <p class="lead">實際叫車資料會來自乘客 App、司機端、付款系統、CRM 與合作夥伴。不同系統可能重複傳送、延遲到達，或缺少欄位。</p>
-          <p>如果專題資料全部都很乾淨，就無法展示資料清理工作。因此，我刻意把常見問題混進合成資料，再用 SQL 找出、分類並處理。</p>
+          <p class="lead">Real ride data comes from passenger apps, driver systems, payments, CRM, and travel partners. Different systems may send duplicates, arrive late, or omit required fields.</p>
+          <p>A perfectly clean dataset would hide the most important preparation work. I therefore mixed realistic errors into synthetic data and used SQL to find, classify, and handle them.</p>
         </div>
 
-        <div class="table-catalog" aria-label="專題資料表">
-          <article><code>raw_users</code><p>乘客資料與 CRM 同意狀態</p></article>
-          <article><code>raw_drivers</code><p>司機資料</p></article>
-          <article><code>raw_partner_bookings</code><p>合作夥伴的抵台訂位</p></article>
-          <article><code>raw_trip_orders</code><p>叫車訂單、車資與地點</p></article>
-          <article><code>raw_trip_events</code><p>行程各階段的事件時間</p></article>
-          <article><code>raw_payments</code><p>付款與退款紀錄</p></article>
-          <article><code>raw_campaign_assignments</code><p>活動分組結果</p></article>
-          <article><code>raw_promo_redemptions</code><p>優惠使用紀錄</p></article>
-          <article><code>raw_crm_events</code><p>訊息發送、開啟與點擊</p></article>
-          <article><code>raw_supply_hourly</code><p>每區每小時的需求與司機數</p></article>
+        <div class="table-catalog">
+          <article><code>raw_users</code><p>Passengers and CRM consent</p></article>
+          <article><code>raw_drivers</code><p>Driver records</p></article>
+          <article><code>raw_partner_bookings</code><p>Confirmed travel bookings</p></article>
+          <article><code>raw_trip_orders</code><p>Ride orders, fares, and locations</p></article>
+          <article><code>raw_trip_events</code><p>Ride lifecycle event times</p></article>
+          <article><code>raw_payments</code><p>Payments and refunds</p></article>
+          <article><code>raw_campaign_assignments</code><p>Experiment assignment</p></article>
+          <article><code>raw_promo_redemptions</code><p>Reward redemption records</p></article>
+          <article><code>raw_crm_events</code><p>Message sends, opens, and clicks</p></article>
+          <article><code>raw_supply_hourly</code><p>Hourly demand and driver supply</p></article>
         </div>
 
         <div class="dirty-data-list">
-          <h3>刻意加入的無效資料</h3>
+          <h3>Invalid data added on purpose</h3>
           <ul>
-            <li>同一筆訂單或事件被重複傳送</li>
-            <li>時間格式無法讀取，或事件時間出現在未來</li>
-            <li>完成時間早於上車時間</li>
-            <li>座標為空值、0,0，或不在台灣範圍</li>
-            <li>訂單找不到對應乘客或司機</li>
-            <li>車資為負數，或付款高於車資</li>
-            <li>優惠使用者和叫車使用者不同</li>
-            <li>Control 組出現優惠使用紀錄</li>
-            <li>事件延遲一天以上才進入系統</li>
+            <li>Duplicate ride orders and events</li>
+            <li>Unreadable timestamps or future events</li>
+            <li>Completion times earlier than pickup times</li>
+            <li>Missing, 0,0, or out-of-Taiwan coordinates</li>
+            <li>Orders with no matching passenger or driver</li>
+            <li>Negative fares or payments greater than fares</li>
+            <li>A reward user different from the ride user</li>
+            <li>Reward redemption in the Control group</li>
+            <li>Events arriving more than one day late</li>
           </ul>
         </div>
       </section>
@@ -206,356 +181,148 @@
       <section class="paper-section" id="process" aria-labelledby="process-title">
         <header class="section-head">
           <span class="chapter-number">04</span>
-          <div>
-            <p class="chapter-kicker">推演過程</p>
-            <h2 id="process-title">我怎麼從原始資料走到結論？</h2>
-          </div>
+          <div><p class="chapter-kicker">Analysis process</p><h2 id="process-title">How did I move from raw data to a decision?</h2></div>
         </header>
 
         <ol class="process-notes">
-          <li><span>Step 01</span><div><h3>保留原始資料</h3><p>CSV 完整讀進 <code>raw_*</code> 原始資料層，不直接修改，方便日後回頭查證。</p></div></li>
-          <li><span>Step 02</span><div><h3>統一資料格式</h3><p>移除多餘空白，把狀態改成統一小寫，並將時間、座標與金額轉成正確格式。</p></div></li>
-          <li><span>Step 03</span><div><h3>處理重複資料</h3><p>同一個 <code>trip_id</code> 只保留最早收到的一筆；其他資料標記為重複，不直接刪除。</p></div></li>
-          <li><span>Step 04</span><div><h3>檢查資料是否合理</h3><p>依序檢查事件時間、事件順序、座標、乘客與司機、車資、付款及優惠資格。</p></div></li>
-          <li><span>Step 05</span><div><h3>重建每一趟行程</h3><p>用事件資料重新整理 <code>requested → accepted → picked_up → completed</code>，不直接相信訂單最後狀態。</p></div></li>
-          <li><span>Step 06</span><div><h3>找出活動分析對象</h3><p>保留有確認抵台訂位、同意 CRM、不在風險名單，而且活動前 180 天沒有台灣完成行程的旅客。</p></div></li>
-          <li><span>Step 07</span><div><h3>比較三個組別</h3><p>比較訊息互動、機場完成率、七天內再次叫車率、優惠成本及額外貢獻。</p></div></li>
-          <li><span>Step 08</span><div><h3>檢查營運狀況</h3><p>一起檢查每區每小時的接單率、取消率、接車時間、司機供給及每日預算。</p></div></li>
+          <li><span>Step 01</span><div><h3>Keep the raw data</h3><p>Load every CSV into <code>raw_*</code> tables without changing the source records.</p></div></li>
+          <li><span>Step 02</span><div><h3>Standardize formats</h3><p>Trim spaces, normalize status values, and safely convert time, coordinates, and amounts.</p></div></li>
+          <li><span>Step 03</span><div><h3>Handle duplicates</h3><p>Keep the earliest receipt for each <code>trip_id</code> and flag later copies.</p></div></li>
+          <li><span>Step 04</span><div><h3>Check business logic</h3><p>Validate time order, coordinates, users, drivers, fares, payments, and reward eligibility.</p></div></li>
+          <li><span>Step 05</span><div><h3>Rebuild each ride</h3><p>Use events to reconstruct <code>requested → accepted → picked_up → completed</code>.</p></div></li>
+          <li><span>Step 06</span><div><h3>Select the campaign cohort</h3><p>Keep confirmed arrivals with CRM consent and no completed Taiwan trip in the previous 180 days.</p></div></li>
+          <li><span>Step 07</span><div><h3>Compare the three groups</h3><p>Measure message engagement, airport completion, D7 repeat, reward cost, and added contribution.</p></div></li>
+          <li><span>Step 08</span><div><h3>Check operating health</h3><p>Review acceptance, cancellation, pickup time, driver supply, and daily budget by zone and hour.</p></div></li>
         </ol>
 
-        <div class="data-funnel" aria-label="資料清理數量變化">
-          <div><span>原始訂單</span><strong>52,222</strong><small>尚未清理</small></div>
-          <i aria-hidden="true">→</i>
-          <div><span>去除重複</span><strong>51,603</strong><small>每筆訂單唯一</small></div>
-          <i aria-hidden="true">→</i>
-          <div class="is-valid"><span>可用行程</span><strong>48,347</strong><small>通過品質檢查</small></div>
-          <i aria-hidden="true">→</i>
-          <div class="is-cohort"><span>活動旅客</span><strong>6,824</strong><small>符合完整資格</small></div>
+        <div class="data-funnel" aria-label="Data cleaning record counts">
+          <div><span>Raw orders</span><strong>52,222</strong><small>Not cleaned</small></div><i aria-hidden="true">→</i>
+          <div><span>Deduplicated</span><strong>51,603</strong><small>One row per order</small></div><i aria-hidden="true">→</i>
+          <div class="is-valid"><span>Valid rides</span><strong>48,347</strong><small>Passed quality rules</small></div><i aria-hidden="true">→</i>
+          <div class="is-cohort"><span>Campaign users</span><strong>6,824</strong><small>Fully eligible</small></div>
         </div>
 
         <table class="issue-table">
-          <caption class="visually-hidden">主要無效資料處理結果</caption>
-          <thead><tr><th scope="col">問題</th><th scope="col">受影響行程</th><th scope="col">處理</th></tr></thead>
+          <caption class="visually-hidden">Main data quality outcomes</caption>
+          <thead><tr><th scope="col">Issue</th><th scope="col">Affected rides</th><th scope="col">Action</th></tr></thead>
           <tbody>
-            <tr><td>未來或無法解析的時間</td><td>1,968</td><td>隔離</td></tr>
-            <tr><td>事件時間前後顛倒</td><td>1,819</td><td>隔離</td></tr>
-            <tr><td>不合理的事件順序</td><td>1,424</td><td>隔離</td></tr>
-            <tr><td>無效座標</td><td>513</td><td>隔離</td></tr>
-            <tr><td>付款高於車資</td><td>304</td><td>隔離</td></tr>
-            <tr><td>延遲到達的事件</td><td>4,522</td><td class="keep">保留＋警告</td></tr>
+            <tr><td>Future or unreadable time</td><td>1,968</td><td>Quarantine</td></tr>
+            <tr><td>Event times reversed</td><td>1,819</td><td>Quarantine</td></tr>
+            <tr><td>Invalid event sequence</td><td>1,424</td><td>Quarantine</td></tr>
+            <tr><td>Invalid coordinates</td><td>513</td><td>Quarantine</td></tr>
+            <tr><td>Payment above fare</td><td>304</td><td>Quarantine</td></tr>
+            <tr><td>Late-arriving event</td><td>4,522</td><td class="keep">Keep + warn</td></tr>
           </tbody>
         </table>
 
-        <p class="plain-note"><strong>清理為什麼重要？</strong> 原始完成行程車資為 NT$21,979,956，清理後為 NT$20,505,068。如果直接用原始資料，車資會高估約 NT$1,474,888。</p>
+        <p class="plain-note"><strong>Why does cleaning matter?</strong> Raw completed-ride fare was NT$21,979,956. After cleaning it was NT$20,505,068. Using the raw data would overstate fare by about NT$1,474,888.</p>
       </section>
 
       <section class="paper-section" id="result" aria-labelledby="result-title">
         <header class="section-head">
           <span class="chapter-number">05</span>
-          <div>
-            <p class="chapter-kicker">分析結果</p>
-            <h2 id="result-title">活動有帶來行程，但成本沒有通過</h2>
-          </div>
+          <div><p class="chapter-kicker">Results</p><h2 id="result-title">The campaign created rides, but the economics failed</h2></div>
         </header>
 
         <div class="result-board">
-          <article>
-            <span>Control</span>
-            <strong>16.4%</strong>
-            <small>機場完成率</small>
-            <dl><div><dt>分組人數</dt><dd>683</dd></div><div><dt>D7 再次叫車</dt><dd>2.8%</dd></div><div><dt>優惠成本</dt><dd>NT$0</dd></div></dl>
-          </article>
-          <article>
-            <span>Airport 150</span>
-            <strong>25.1%</strong>
-            <small>機場完成率</small>
-            <dl><div><dt>增加幅度</dt><dd>+8.7pp</dd></div><div><dt>D7 再次叫車</dt><dd>5.0%</dd></div><div><dt>額外貢獻</dt><dd class="negative">-NT$42,480</dd></div></dl>
-          </article>
-          <article>
-            <span>Bundle 100+100</span>
-            <strong>23.5%</strong>
-            <small>機場完成率</small>
-            <dl><div><dt>增加幅度</dt><dd>+7.1pp</dd></div><div><dt>D7 再次叫車</dt><dd>8.3%</dd></div><div><dt>額外貢獻</dt><dd class="negative">-NT$25,592</dd></div></dl>
-          </article>
+          <article><span>Control</span><strong>16.4%</strong><small>Airport completion</small><dl><div><dt>Users</dt><dd>683</dd></div><div><dt>D7 repeat</dt><dd>2.8%</dd></div><div><dt>Reward cost</dt><dd>NT$0</dd></div></dl></article>
+          <article><span>Airport 150</span><strong>25.1%</strong><small>Airport completion</small><dl><div><dt>Lift</dt><dd>+8.7pp</dd></div><div><dt>D7 repeat</dt><dd>5.0%</dd></div><div><dt>Added contribution</dt><dd class="negative">-NT$42,480</dd></div></dl></article>
+          <article><span>Bundle 100+100</span><strong>23.5%</strong><small>Airport completion</small><dl><div><dt>Lift</dt><dd>+7.1pp</dd></div><div><dt>D7 repeat</dt><dd>8.3%</dd></div><div><dt>Added contribution</dt><dd class="negative">-NT$25,592</dd></div></dl></article>
         </div>
 
         <div class="interpretation-grid">
-          <div><span>第一次叫車</span><h3>Airport 150 最有效</h3><p>機場完成率比 Control 高 8.7 個百分點，估計增加約 265 趟完成行程。</p></div>
-          <div><span>再次使用</span><h3>Bundle 留存最好</h3><p>七天內再次叫車率達 8.3%，代表兩段式優惠較有機會讓旅客再次使用。</p></div>
-          <div class="is-warning"><span>商業結果</span><h3>兩組都沒有回本</h3><p>行程確實增加，但增加的收益仍不足以支付優惠成本。</p></div>
+          <div><span>First ride</span><h3>Airport 150 worked best</h3><p>Airport completion was 8.7 percentage points above Control, equal to about 265 added completed rides.</p></div>
+          <div><span>Second use</span><h3>Bundle retained best</h3><p>D7 repeat reached 8.3%, suggesting the two-step reward had a better chance of creating another use.</p></div>
+          <div class="is-warning"><span>Business result</span><h3>Neither offer paid back</h3><p>Trips increased, but the added contribution was still lower than the reward cost.</p></div>
         </div>
 
         <div class="operations-check">
-          <div class="check-title"><span>營運檢查</span><h3>效果之外，還發生了什麼？</h3></div>
-          <div class="check-row breach"><span>桃園機場 P90 接車時間</span><strong>+15.0%</strong><b>超過 +10% 上限</b></div>
-          <div class="check-row breach"><span>西門町取消率</span><strong>+1.7pp</strong><b>超過 +1pp 上限</b></div>
-          <div class="check-row pass"><span>台北 101</span><strong>通過</strong><b>沒有超過限制</b></div>
-          <div class="check-row pass"><span>台北車站</span><strong>通過</strong><b>沒有超過限制</b></div>
+          <div class="check-title"><span>Operations check</span><h3>What happened beyond conversion?</h3></div>
+          <div class="check-row breach"><span>Taoyuan Airport P90 pickup time</span><strong>+15.0%</strong><b>Above +10% limit</b></div>
+          <div class="check-row breach"><span>Ximending cancellation rate</span><strong>+1.7pp</strong><b>Above +1pp limit</b></div>
+          <div class="check-row pass"><span>Taipei 101</span><strong>Pass</strong><b>Within limit</b></div>
+          <div class="check-row pass"><span>Taipei Main Station</span><strong>Pass</strong><b>Within limit</b></div>
         </div>
 
         <div class="budget-note">
-          <div><span>活動預算</span><strong>NT$150,000</strong></div>
-          <div class="spent"><span>實際支出</span><strong>NT$208,900</strong></div>
-          <div><span>使用率</span><strong>139.3%</strong></div>
-          <p>超支 <b>NT$58,900</b>。如果正式執行，應在支出超前每日計畫 15% 時就開始縮小發送或調整優惠。</p>
+          <div><span>Budget</span><strong>NT$150,000</strong></div>
+          <div class="spent"><span>Actual spend</span><strong>NT$208,900</strong></div>
+          <div><span>Usage</span><strong>139.3%</strong></div>
+          <p>The campaign overspent by <b>NT$58,900</b>. In a live program, sends should be reduced when spend runs 15% ahead of the daily plan.</p>
         </div>
       </section>
 
       <section class="paper-section" id="conclusion" aria-labelledby="conclusion-title">
         <header class="section-head">
           <span class="chapter-number">06</span>
-          <div>
-            <p class="chapter-kicker">結論建議</p>
-            <h2 id="conclusion-title">暫不全面推出，先修改方案</h2>
-          </div>
+          <div><p class="chapter-kicker">Recommendation</p><h2 id="conclusion-title">Do not scale yet. Redesign the offer first.</h2></div>
         </header>
 
         <div class="final-answer">
-          <div>
-            <span>最後判斷</span>
-            <strong>活動有效<br>≠ 適合擴大</strong>
-          </div>
-          <ol>
-            <li>兩種方案的額外貢獻都是負數。</li>
-            <li>活動支出達預算的 139.3%。</li>
-            <li>桃園機場接車時間超過設定上限。</li>
-          </ol>
+          <div><span>Final judgment</span><strong>Effective<br>does not mean scalable</strong></div>
+          <ol><li>Both reward designs had negative added contribution.</li><li>Campaign spend reached 139.3% of budget.</li><li>Airport pickup time exceeded the operating limit.</li></ol>
         </div>
 
-        <h3>我會怎麼改善？</h3>
+        <h3>What would I change?</h3>
         <ol class="recommendation-list">
-          <li><span>01</span><div><strong>繼續保留 Control</strong><p>確認沒有優惠時的自然叫車率，避免把本來就會發生的行程算成活動成果。</p></div></li>
-          <li><span>02</span><div><strong>優先修改 Bundle</strong><p>降低第二趟優惠金額、設定最低車資，或和旅遊合作夥伴共同負擔成本。</p></div></li>
-          <li><span>03</span><div><strong>分批發送 CRM</strong><p>依機場每小時的司機供給決定發送人數，不一次把所有需求推進市場。</p></div></li>
-          <li><span>04</span><div><strong>設置自動停止條件</strong><p>當接車時間、取消率或預算超標時，暫停新的訊息發送。</p></div></li>
+          <li><span>01</span><div><strong>Keep the Control group</strong><p>Measure natural ride behavior and avoid crediting the campaign for rides that would happen anyway.</p></div></li>
+          <li><span>02</span><div><strong>Redesign Bundle first</strong><p>Lower the second reward, require a minimum fare, or share the cost with the travel partner.</p></div></li>
+          <li><span>03</span><div><strong>Pace CRM sends</strong><p>Match message volume to hourly airport driver supply instead of releasing all demand at once.</p></div></li>
+          <li><span>04</span><div><strong>Add automatic stop rules</strong><p>Pause new messages when pickup time, cancellation, or budget crosses its limit.</p></div></li>
         </ol>
 
         <div class="limitations">
-          <h3>專題限制</h3>
-          <ul>
-            <li>所有資料均為合成資料，不能代表任何真實叫車平台的營運結果。</li>
-            <li>沒有納入天氣、航班延誤、其他交通工具或競爭平台價格。</li>
-            <li>沒有真實合作夥伴成本及客服案件資料。</li>
-            <li>分析期間只有八週，無法判斷更長期留存。</li>
-          </ul>
+          <h3>Project limitations</h3>
+          <ul><li>All records are synthetic and cannot represent a real platform's results.</li><li>Weather, flight delay, competing transport, and competitor prices are not included.</li><li>Real partner cost and customer support cases are not available.</li><li>The eight-week window cannot measure long-term retention.</li></ul>
         </div>
       </section>
 
       <section class="paper-section sql-chapter" id="sql" aria-labelledby="sql-title">
         <header class="section-head">
           <span class="chapter-number">07</span>
-          <div>
-            <p class="chapter-kicker">SQL 指令章節</p>
-            <h2 id="sql-title">每一步用了哪些表格與指令？</h2>
-          </div>
+          <div><p class="chapter-kicker">SQL steps</p><h2 id="sql-title">Which tables and commands produced each result?</h2></div>
         </header>
 
-        <p class="lead">這個專題使用 DuckDB SQL。以下依實際順序說明每一步的輸入資料表、輸出資料表、主要指令，以及為什麼要這樣算。</p>
-
-        <div class="sql-map" aria-label="SQL 資料流程">
-          <span>CSV</span><i>→</i><span>raw_*</span><i>→</i><span>stg_*</span><i>→</i><span>fct_trip_lifecycle</span><i>→</i><span>mart_*</span>
-        </div>
-        <p class="sql-terms"><code>raw_*</code> 是原始資料層；<code>stg_*</code> 是完成格式統一的暫存層；<code>fct_*</code> 是每趟可信行程；<code>mart_*</code> 是提供報告與決策使用的彙整表。</p>
+        <p class="lead">The project uses DuckDB SQL. The steps below show the input, output, main SQL idea, and reason for each calculation.</p>
+        <div class="sql-map" aria-label="SQL data flow"><span>CSV</span><i>→</i><span>raw_*</span><i>→</i><span>stg_*</span><i>→</i><span>fct_trip_lifecycle</span><i>→</i><span>mart_*</span></div>
+        <p class="sql-terms"><code>raw_*</code> keeps source records; <code>stg_*</code> standardizes fields; <code>fct_*</code> stores one trusted ride; <code>mart_*</code> prepares decision-ready metrics.</p>
 
         <div class="sql-lessons">
-          <details open>
-            <summary><span>01</span><div><strong>讀取原始 CSV</strong><small>CSV → raw_trip_orders</small></div></summary>
-            <div class="lesson-body">
-              <p>先把所有欄位當文字讀入，避免錯誤日期或金額讓整個匯入中斷。</p>
-              <pre><code>CREATE OR REPLACE TABLE raw_trip_orders AS
-SELECT *
-FROM read_csv_auto(
-  'data/raw_sample/raw_trip_orders.csv',
-  header = true,
-  all_varchar = true
-);</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/00_load_raw.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>02</span><div><strong>統一欄位格式</strong><small>raw_trip_orders → stg_trip_orders</small></div></summary>
-            <div class="lesson-body">
-              <p><code>trim</code> 移除空白、<code>lower</code> 統一狀態、<code>try_cast</code> 轉換時間與數字；轉換失敗時先留下空值。</p>
-              <pre><code>SELECT
-  trim(trip_id) AS trip_id,
-  trim(user_id) AS user_id,
-  try_cast(requested_at AS TIMESTAMPTZ) AS requested_at,
-  try_cast(pickup_lat AS DOUBLE) AS pickup_lat,
-  try_cast(gross_fare_twd AS DOUBLE) AS gross_fare_twd,
-  lower(trim(terminal_status)) AS terminal_status
-FROM raw_trip_orders;</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/01_standardize_raw_data.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>03</span><div><strong>找出重複訂單</strong><small>stg_trip_orders → stg_trip_orders_dedup</small></div></summary>
-            <div class="lesson-body">
-              <p>把相同 <code>trip_id</code> 放在一起，依收到時間編號。第一筆保留，其他標記為重複。</p>
-              <pre><code>row_number() OVER (
-  PARTITION BY trip_id
-  ORDER BY ingested_at
-) AS row_num</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/02_deduplicate.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>04</span><div><strong>檢查座標、車資與付款</strong><small>訂單＋付款 → trip_quality_issues</small></div></summary>
-            <div class="lesson-body">
-              <p>先用 <code>WHERE</code> 找出空座標或不在台灣範圍的行程；再用 <code>JOIN</code> 連接付款，檢查負車資或付款高於車資。</p>
-              <pre><code>WHERE pickup_lat IS NULL
-   OR pickup_lng IS NULL
-   OR pickup_lat NOT BETWEEN 21.5 AND 25.5
-   OR pickup_lng NOT BETWEEN 119.0 AND 122.5;
-
-SELECT o.trip_id, sum(p.amount_twd) AS payment_twd
-FROM stg_trip_orders_dedup o
-JOIN stg_payments p ON o.trip_id = p.trip_id
-GROUP BY o.trip_id, o.gross_fare_twd
-HAVING o.gross_fare_twd &lt; 0
-    OR sum(p.amount_twd) &gt; o.gross_fare_twd;</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/03_quality_checks.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>05</span><div><strong>重建行程事件順序</strong><small>stg_trip_events_dedup → fct_trip_lifecycle</small></div></summary>
-            <div class="lesson-body">
-              <p>同一趟行程原本有多筆事件，先整理成一列，再檢查時間是否依序前進。</p>
-              <pre><code>SELECT
-  trip_id,
-  min(event_at) FILTER (WHERE event_type = 'requested') AS requested_at,
-  min(event_at) FILTER (WHERE event_type = 'accepted') AS accepted_at,
-  min(event_at) FILTER (WHERE event_type = 'picked_up') AS picked_up_at,
-  min(event_at) FILTER (WHERE event_type = 'completed') AS completed_at
-FROM stg_trip_events_dedup
-GROUP BY trip_id;</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/04_trip_lifecycle.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>06</span><div><strong>找出活動旅客</strong><small>活動分組＋訂位＋CRM＋行程 → mart_campaign_cohort</small></div></summary>
-            <div class="lesson-body">
-              <p><code>EXISTS</code> 確認旅客收到 CRM；<code>NOT EXISTS</code> 排除活動前 180 天已完成台灣行程的人。</p>
-              <pre><code>AND EXISTS (
-  SELECT 1 FROM stg_crm_events crm
-  WHERE crm.user_id = a.user_id
-    AND crm.crm_event_type = 'sent'
-    AND crm.event_at BETWEEN a.assigned_at AND b.arrival_at
-)
-AND NOT EXISTS (
-  SELECT 1 FROM fct_trip_lifecycle f
-  WHERE f.user_id = a.user_id
-    AND f.valid_for_trip_kpi
-    AND f.lifecycle_status = 'completed'
-    AND f.requested_at >= a.assigned_at - INTERVAL '180 days'
-    AND f.requested_at &lt; a.assigned_at
-);</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/05_campaign_cohort.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>07</span><div><strong>計算活動漏斗</strong><small>活動旅客＋CRM＋行程 → mart_campaign_funnel</small></div></summary>
-            <div class="lesson-body">
-              <p>用 <code>COUNT FILTER</code> 在同一份查詢中計算分組、收到訊息、開啟、叫車與完成行程的人數。</p>
-              <pre><code>SELECT
-  experiment_arm,
-  count(*) AS assigned_users,
-  count(*) FILTER (WHERE crm_sent) AS crm_sent_users,
-  count(*) FILTER (WHERE airport_requested) AS request_users,
-  count(*) FILTER (WHERE airport_completed) AS completed_users
-FROM campaign_users
-GROUP BY experiment_arm;</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/06_campaign_funnel.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>08</span><div><strong>計算完成率與活動增量</strong><small>int_campaign_user → mart_experiment_results</small></div></summary>
-            <div class="lesson-body">
-              <p>先算每組完成率，再減去 Control 完成率。差值乘上優惠組人數，就是估計增加的完成行程。</p>
-              <pre><code>g.airport_completed_users::DOUBLE
-  / nullif(g.assigned_users, 0) - c.p0
-  AS incremental_conversion_rate,
-
-(g.airport_completed_users::DOUBLE
-  / nullif(g.assigned_users, 0) - c.p0)
-  * g.assigned_users
-  AS incremental_completed_trips</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/07_experiment_results.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>09</span><div><strong>計算每區每小時服務品質</strong><small>可信行程＋司機供給 → mart_marketplace_hourly</small></div></summary>
-            <div class="lesson-body">
-              <p><code>date_trunc</code> 將資料整理成每小時，<code>quantile_cont</code> 計算 P90 接車時間。</p>
-              <pre><code>SELECT
-  date_trunc('hour', requested_at) AS snapshot_hour,
-  origin_zone AS service_zone,
-  count(*) AS requests,
-  quantile_cont(pickup_eta_min, 0.90)
-    FILTER (WHERE lifecycle_status = 'completed') AS p90_eta
-FROM fct_trip_lifecycle
-WHERE valid_for_trip_kpi
-GROUP BY 1, 2;</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/08_marketplace_health.sql">查看完整 SQL</a>
-            </div>
-          </details>
-
-          <details>
-            <summary><span>10</span><div><strong>計算每日累積預算</strong><small>有效優惠 → mart_campaign_budget_daily</small></div></summary>
-            <div class="lesson-body">
-              <p><code>SUM OVER</code> 依日期累加支出，再用 <code>CASE WHEN</code> 分成正常、花太快與超過預算。</p>
-              <pre><code>sum(daily_spend_twd) OVER (
-  ORDER BY campaign_date
-) AS cumulative_spend_twd,
-CASE
-  WHEN cumulative_spend_twd &gt; 150000 THEN 'alert_over_budget'
-  WHEN cumulative_spend_twd &gt; planned_spend_twd * 1.15 THEN 'alert_over_pace'
-  ELSE 'on_track'
-END AS budget_status</code></pre>
-              <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/09_quality_and_reconciliation.sql">查看完整 SQL</a>
-            </div>
-          </details>
+          <details open><summary><span>01</span><div><strong>Load the raw CSV</strong><small>CSV → raw_trip_orders</small></div></summary><div class="lesson-body"><p>Read every field as text so a bad time or amount cannot stop the whole import. Main command: <code>CREATE OR REPLACE TABLE</code> with <code>read_csv_auto</code>.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/00_load_raw.sql">Open the full SQL</a></div></details>
+          <details><summary><span>02</span><div><strong>Standardize field formats</strong><small>raw_trip_orders → stg_trip_orders</small></div></summary><div class="lesson-body"><p>Use <code>trim</code>, <code>lower</code>, and <code>try_cast</code> to normalize values without failing on invalid input.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/01_standardize_raw_data.sql">Open the full SQL</a></div></details>
+          <details><summary><span>03</span><div><strong>Find duplicate orders</strong><small>stg_trip_orders → stg_trip_orders_dedup</small></div></summary><div class="lesson-body"><p>Use <code>row_number() over (partition by trip_id)</code> to keep the earliest receipt and flag later copies.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/02_deduplicate.sql">Open the full SQL</a></div></details>
+          <details><summary><span>04</span><div><strong>Check coordinates, fares, and payments</strong><small>orders + payments → trip_quality_issues</small></div></summary><div class="lesson-body"><p>Use <code>WHERE</code> for invalid values and <code>JOIN</code> to compare payment against fare.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/03_quality_checks.sql">Open the full SQL</a></div></details>
+          <details><summary><span>05</span><div><strong>Rebuild the ride lifecycle</strong><small>stg_trip_events_dedup → fct_trip_lifecycle</small></div></summary><div class="lesson-body"><p>Pivot many events into one ride row and verify that each event time moves forward.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/04_trip_lifecycle.sql">Open the full SQL</a></div></details>
+          <details><summary><span>06</span><div><strong>Select campaign users</strong><small>assignment + booking + CRM + rides → mart_campaign_cohort</small></div></summary><div class="lesson-body"><p>Use <code>EXISTS</code> to confirm CRM contact and <code>NOT EXISTS</code> to exclude prior Taiwan riders.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/05_campaign_cohort.sql">Open the full SQL</a></div></details>
+          <details><summary><span>07</span><div><strong>Build the campaign funnel</strong><small>campaign users + CRM + rides → mart_campaign_funnel</small></div></summary><div class="lesson-body"><p>Use <code>COUNT FILTER</code> to count assigned, sent, opened, requested, and completed users in one query.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/06_campaign_funnel.sql">Open the full SQL</a></div></details>
+          <details><summary><span>08</span><div><strong>Calculate lift and added rides</strong><small>int_campaign_user → mart_experiment_results</small></div></summary><div class="lesson-body"><p>Subtract the Control completion rate from each reward group's rate, then multiply the difference by group size.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/07_experiment_results.sql">Open the full SQL</a></div></details>
+          <details><summary><span>09</span><div><strong>Measure hourly service health</strong><small>trusted rides + driver supply → mart_marketplace_hourly</small></div></summary><div class="lesson-body"><p>Use <code>date_trunc</code> for hourly groups and <code>quantile_cont</code> for P90 pickup time.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/08_marketplace_health.sql">Open the full SQL</a></div></details>
+          <details><summary><span>10</span><div><strong>Track cumulative budget</strong><small>valid rewards → mart_campaign_budget_daily</small></div></summary><div class="lesson-body"><p>Use <code>SUM OVER</code> for cumulative spend and <code>CASE WHEN</code> for normal, pacing alert, and over-budget states.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/blob/main/sql/09_quality_and_reconciliation.sql">Open the full SQL</a></div></details>
         </div>
 
-        <div class="sql-summary">
-          <h3>SQL 在這份專題中的作用</h3>
-          <p>SQL 不只用來算數字，也記錄每一筆資料為什麼保留、為什麼隔離，以及每一個指標如何產生。只要重新執行相同流程，就能重現相同結果。</p>
-          <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/tree/main/sql">查看全部 SQL 檔案</a>
-        </div>
+        <div class="sql-summary"><h3>Why SQL matters here</h3><p>SQL does more than calculate numbers. It records why a row was kept or quarantined and how every metric was created, so another person can rerun the same logic.</p><a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study/tree/main/sql">Browse all SQL files</a></div>
       </section>
 
-      <section class="paper-section" id="reflection" aria-labelledby="reflection-title">
+      <section class="paper-section reflection" id="reflection" aria-labelledby="reflection-title">
         <header class="section-head">
           <span class="chapter-number">08</span>
-          <div>
-            <p class="chapter-kicker">專題心得</p>
-            <h2 id="reflection-title">我從這份專題學到什麼？</h2>
-          </div>
+          <div><p class="chapter-kicker">What I learned</p><h2 id="reflection-title">What did this project teach me?</h2></div>
         </header>
 
         <div class="reflection-copy">
-          <p>資料分析不是把資料放進圖表就結束。分析以前要先確認資料是否可信；活動訂單增加後，還要一起檢查成本、預算及服務品質。</p>
-          <p>SQL 在這個專題中不只是計算工具，也負責記錄每一步規則。別人可以沿著相同的資料表和指令，檢查我的分析是否合理。</p>
-          <blockquote>最重要的學習是：活動有效，不代表適合全面推出。</blockquote>
+          <p>Data analysis does not end when numbers enter a chart. First, the data must be trustworthy. Then campaign growth must be checked together with cost, budget, and service quality.</p>
+          <p>SQL was not only a calculation tool. It documented each rule so another person could follow the same tables and commands and challenge the decision.</p>
+          <blockquote>More rides are useful only when the business can afford and serve them.</blockquote>
         </div>
 
         <div class="closing-links">
-          <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study"><span>分析原始檔</span><strong>前往 GitHub Repository →</strong></a>
-          <a href="portfolio/"><span>英文專業版</span><strong>查看完整分析網站 →</strong></a>
+          <a href="https://github.com/Joelyn-Poh/taiwan-airport-ops-case-study"><span>Source files</span><strong>Open the GitHub repository →</strong></a>
+          <a href="portfolio/"><span>Professional English version</span><strong>Open the full evidence portfolio →</strong></a>
         </div>
+
       </section>
 
-      <footer class="report-footer">
-        <p>個人學習專題作品｜全部營運資料皆為合成資料</p>
-        <a href="#top">回到頂端 ↑</a>
-      </footer>
+      <footer class="report-footer"><p>Personal learning project | All operational data is synthetic</p><a href="#top">Back to top ↑</a></footer>
     </main>
   </div>
 
