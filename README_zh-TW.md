@@ -2,9 +2,9 @@
 
 ## 桃園機場旅遊合作 SQL 專題
 
-這是一份以叫車平台營運分析為主題的個人大學專題。專題以合成資料模擬「旅客抵達桃園機場後，透過旅遊合作夥伴與 CRM 取得叫車優惠」的營運情境，從資料清洗、受眾圈選、活動評估到供需風險控管，產出可重跑的 SQL、Excel Dashboard 與完整結案報告。
+這是一份以叫車平台營運分析為主題的個人學習專題。專題以合成資料模擬「旅客抵達桃園機場後，透過旅遊合作夥伴與 CRM 取得叫車優惠」的營運情境，從資料清洗、受眾圈選、活動評估到供需風險控管，產出可重跑的 SQL、Excel Dashboard 與營運結論網站。
 
-**網站版：**[查看大學生白話版專題網站](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
+**網站版：**[查看個人學習專題網站](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
 
 **英文專業版：**[查看營運分析作品集](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
@@ -26,20 +26,18 @@ npm install
 python src/generate_synthetic_data.py --mode sample
 python src/run_pipeline.py
 node src/build_dashboard.mjs
-python src/build_report.py
 ```
 
-需要 Python 3.12、Node.js 20+、DuckDB、ReportLab 與 `@oai/artifact-tool`。若本機無法使用 Excel 產製套件，仍可執行 SQL Pipeline，直接閱讀 `outputs/data/` 的 CSV 分析表。
+需要 Python 3.12、Node.js 20+、DuckDB 與 `@oai/artifact-tool`。若本機無法使用 Excel 產製套件，仍可執行 SQL Pipeline，直接閱讀 `outputs/data/` 的 CSV 分析表。
 
 ## 專案導覽
 
 | 路徑 | 內容 |
 |---|---|
-| `src/` | 合成資料、SQL Pipeline、Dashboard、報告產製程式 |
+| `src/` | 合成資料、SQL Pipeline 與 Dashboard 產製程式 |
 | `sql/` | 從 Raw、Staging、Fact 到 Mart 的 DuckDB SQL |
 | `tests/` | 交易生命週期、優惠資格、行銷與營運品質檢核 |
 | `dashboard/` | Excel Dashboard 與預覽圖 |
-| `report/` | 繁中完整報告、PDF、英文摘要 |
 | `docs/` | 資料模型、清洗規則、指標、活動與營運文件 |
 | `data/` | 合成原始資料、資料字典與髒資料清單 |
 
@@ -47,7 +45,8 @@ python src/build_report.py
 
 所有乘客、司機、行程、合作夥伴與結果皆為合成資料。本專題不代表任何真實叫車平台，也不使用任何公司的內部資料或真實業績。
 
-## 主要報告
+## 主要成果
 
-- [專案工作分析報告](report/project_work_analysis_report.md)：完整說明專案構思、假設情境、主要分析工作、SQL 步驟與指令、商業判斷及最終結論。
-- [完整結案報告](report/final_report.md)：整理活動結果、Marketplace、預算與結案建議。
+- [個人學習專題網站](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)：用白話呈現構思、分析過程、SQL 方法、商業判斷與結論。
+- [SQL 分析流程](sql/)：保留可重跑的資料清洗、活動分析與營運指標查詢。
+- [Excel Dashboard](dashboard/airport_campaign_dashboard.xlsx)：整理活動、Marketplace、預算與資料品質結果。

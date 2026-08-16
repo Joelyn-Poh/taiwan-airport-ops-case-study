@@ -16,7 +16,7 @@ The primary user is a mobility operations hiring manager, interviewer, instructo
 
 ## Product Purpose
 
-Turn the airport travel partnership case study into a concise, browsable proof of work. Success means a reviewer can understand the recommendation within the first screen, follow the analysis from dirty ride data to an operations decision, and open the underlying SQL, dashboard, and reports.
+Turn the airport travel partnership case study into a concise, browsable proof of work. Success means a reviewer can understand the recommendation within the first screen, follow the analysis from dirty ride data to an operations decision, and open the underlying SQL, dashboard, and operating artifacts.
 
 ## Positioning
 
@@ -28,19 +28,16 @@ The site is evaluated as part of a GitHub portfolio. Reviewers may arrive from a
 
 ## Capabilities and Constraints
 
-- The student-friendly Traditional Chinese report is the default GitHub Pages entry point.
+- The plain-language Traditional Chinese personal learning report is the default GitHub Pages entry point.
 - A professional English-first evidence portfolio remains available at `/portfolio/`, with its Traditional Chinese language switch preserved.
 - Both presentation versions must share the same verified metrics, conclusions, and evidence links.
 - All operational data is synthetic and must be labeled as such.
 - The site must work as a static GitHub Pages deployment.
-- The existing reports, SQL, tests, Excel dashboard, and repository history remain the source of truth.
+- The website, SQL, tests, Excel dashboard, and repository history remain the source of truth.
 - The site must not imply affiliation with any commercial ride-hailing platform or access to proprietary company data.
 
 ## Evidence on Hand
 
-- `report/project_work_analysis_report.md`: full rationale, workflow, SQL steps, business judgment, and conclusion.
-- `report/final_report.md`: Traditional Chinese closeout report.
-- `report/executive_summary_en.md`: English summary.
 - `dashboard/airport_campaign_dashboard.xlsx` and `dashboard/screenshots/dashboard_preview.png`: operating dashboard and preview.
 - `sql/`, `tests/`, `outputs/`, and `docs/`: reproducible analysis and operating artifacts.
 - No personal portrait, customer testimonial, or real platform data is available; future work must not fabricate them.

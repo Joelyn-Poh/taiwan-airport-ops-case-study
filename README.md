@@ -4,7 +4,7 @@
 
 An independent, synthetic-data portfolio project about ride-hailing platform operations. The case asks how an airport travel partnership should target inbound travelers, select rewards, and protect marketplace health.
 
-**Website:** [Explore the student-friendly Traditional Chinese report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
+**Website:** [Explore the plain-language Traditional Chinese report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
 
 **Professional English version:** [Open the operations evidence portfolio](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
@@ -36,9 +36,6 @@ Raw data is intentionally imperfect. The cleaning workflow never overwrites raw 
 | `sql/` | Reproducible DuckDB SQL transformations and business analysis |
 | `tests/` | Data-quality and business-rule checks |
 | `dashboard/airport_campaign_dashboard.xlsx` | Stakeholder-ready Excel dashboard |
-| `report/final_report.md` and `.pdf` | Traditional Chinese project report and closeout |
-| `report/project_work_analysis_report.md` | Full project rationale, SQL workflow, business analysis, and evidence trail |
-| `report/executive_summary_en.md` | English interview summary |
 | `docs/` | Data model, cleaning rules, metric definitions, campaign and operational documents |
 
 ## Reproduce locally
@@ -49,10 +46,9 @@ npm install
 python src/generate_synthetic_data.py --mode sample
 python src/run_pipeline.py
 node src/build_dashboard.mjs
-python src/build_report.py
 ```
 
-The project uses Python 3.12, DuckDB, ReportLab, Node.js 20+, and `@oai/artifact-tool` for the Excel workbook. If this package is unavailable outside Codex, run the SQL pipeline and review the exported CSV marts; the Dashboard is a reproducible presentation layer, not the source of truth. The generated source data is deterministic through `config.json`.
+The project uses Python 3.12, DuckDB, Node.js 20+, and `@oai/artifact-tool` for the Excel workbook. If this package is unavailable outside Codex, run the SQL pipeline and review the exported CSV marts; the Dashboard is a reproducible presentation layer, not the source of truth. The generated source data is deterministic through `config.json`.
 
 ## Data and ethical note
 
@@ -62,12 +58,11 @@ All operational records are synthetic. Market context sources and their limitati
 
 ```text
 data/       raw synthetic sample, source notes, and data dictionary
-src/        generator, pipeline runner, dashboard and report builders
+src/        generator, pipeline runner, and dashboard builder
 sql/        staged, cleaned, and analytical SQL layers
 tests/      reproducible SQL assertions
 outputs/    small, derived metrics exported by the pipeline
 dashboard/  Excel dashboard and preview image
-report/     full report and English executive summary
 docs/       business and operating documentation
 ```
 

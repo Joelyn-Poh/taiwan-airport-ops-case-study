@@ -6,7 +6,7 @@
     "shadows": [
       {
         "name": "ambient-dossier",
-        "value": "0 18px 44px rgba(11, 36, 64, 0.12)",
+        "value": "0 18px 44px rgba(3, 5, 6, 0.12)",
         "purpose": "Reserved ambient navy shadow token; current evidence surfaces remain flat."
       }
     ],

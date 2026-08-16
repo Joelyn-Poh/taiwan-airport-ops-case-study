@@ -7,7 +7,7 @@ related_targets: ["site/student-report/index.html","site/student-report/styles.c
 
 # Student Report Surface
 
-- Scope and mode: default GitHub Pages entry point plus a matching `/student-report/` route for the simplified Traditional Chinese university project report; Read mode.
+- Scope and mode: default GitHub Pages entry point plus a matching `/student-report/` route for the simplified Traditional Chinese personal learning project report; Read mode.
 - Audience and job: a hiring manager, instructor, or general reader should understand the project idea, goal, process, result, and judgment without prior operations knowledge.
 - Primary action: follow the report in order, then inspect the standalone SQL chapter or open the repository evidence.
 - Proof: verified synthetic-data counts, campaign outcomes, marketplace guardrails, budget result, and links to the real SQL files.
