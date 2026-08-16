@@ -4,9 +4,9 @@
 
 An independent, synthetic-data portfolio project about ride-hailing platform operations. The case asks how an airport travel partnership should target inbound travelers, select rewards, and protect marketplace health.
 
-**Website:** [Explore the plain-language Traditional Chinese report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
+**Website:** [Explore the plain-language English report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
 
-**Plain-language English version:** [Read the English personal learning report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/en/)
+**Traditional Chinese version:** [閱讀中文版個人學習專題](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/student-report/)
 
 **Professional English version:** [Open the operations evidence portfolio](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
