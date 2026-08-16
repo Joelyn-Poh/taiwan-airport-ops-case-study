@@ -1,6 +1,7 @@
 :root {
   --ink: #030506;
   --ink-2: #183b5c;
+  --menu-state: #111922;
   --paper: #f3f4f1;
   --paper-2: #e8ecec;
   --paper-3: #dbe1e2;
@@ -21,6 +22,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
+  font-size: 106.25%;
   scroll-behavior: smooth;
   scroll-padding-top: 1rem;
   background: var(--paper-2);
@@ -32,7 +34,7 @@ body {
   background: var(--paper-2);
   color: var(--ink);
   font-family: var(--body);
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
 }
@@ -131,8 +133,7 @@ button { font: inherit; }
   transition: background-color 180ms ease-out, color 180ms ease-out;
 }
 
-.case-nav a:hover { background: #173a5b; }
-.case-nav a.is-active { background: #1f4a73; color: #fff; }
+.case-nav a:hover, .case-nav a.is-active { background: var(--menu-state); color: #fff; }
 .case-nav a.is-active::before {
   content: "";
   position: absolute;
@@ -487,7 +488,7 @@ code { color: #d6e6de; font-family: var(--mono); font-size: 0.8125rem; line-heig
 }
 
 @media (max-width: 560px) {
-  body { font-size: 14px; }
+  body { font-size: 16px; }
   .exhibit { padding: 1.25rem; }
   h1 { font-size: clamp(3.15rem, 18vw, 4.9rem); }
   body[data-language="zh"] h1 { max-width: none; font-size: clamp(2.75rem, 13vw, 3.35rem); line-height: 0.98; }
