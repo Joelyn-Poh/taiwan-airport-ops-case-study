@@ -46,7 +46,7 @@ Operations evidence dossier: a left evidence index, a central case file, and a r
 | Typography | Condensed display face for decisions; workhorse sans for prose; monospace only for SQL and measurements | Self-hosted or web font with safe fallbacks |
 | Surface | Cool gray paper with deep navy ink; no decorative texture substitution | CSS color surfaces |
 | Rules and tabs | 1px navy rules, squared exhibit tabs, restrained 10–14px corners | CSS and pseudo-elements |
-| Status language | Safety orange for breach/decision; verification green for passed evidence | CSS tokens and inline SVG icons |
+| Status language | Bright signal green for breach/decision; dark verification green for passed evidence | CSS tokens and inline SVG icons |
 | Data-cleaning flow | Dense lines narrowing from raw orders to trusted trips, with quarantine branch | Authored responsive SVG |
 | Experiment evidence | Comparison table plus proportional bars for airport conversion and D7 repeat | Semantic table and CSS bars |
 | Marketplace evidence | Four-zone guardrail ledger with pass/breach states | Semantic table/list |

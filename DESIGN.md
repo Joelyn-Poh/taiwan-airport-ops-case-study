@@ -4,15 +4,18 @@ description: An auditable operations evidence dossier that traces synthetic airp
 colors:
   deep-navy-ink: "#030506"
   layered-navy: "#183b5c"
-  menu-state: "#111922"
+  menu-state: "#112233"
+  rail-rule: "rgba(255,255,255,0.12)"
   dossier-paper: "#f3f4f1"
   cool-paper: "#e8ecec"
   cool-paper-deep: "#dbe1e2"
   exhibit-white: "#fbfcfa"
   muted-slate: "#5e6b73"
-  fine-rule: "#9aa8af"
-  safety-orange: "#d95018"
-  safety-orange-pale: "#f8e6dd"
+  fine-rule: "#cbd1d4"
+  section-rule: "#aeb8bd"
+  signal-green: "#09bb66"
+  signal-green-text: "#067a42"
+  signal-green-pale: "#e3f8ed"
   verification-green: "#27734d"
   verification-green-pale: "#dfeee6"
   focus-blue: "#1769aa"
@@ -95,8 +98,8 @@ components:
     rounded: "{rounded.square}"
     padding: "0.42rem 0.62rem"
   breach-row:
-    backgroundColor: "{colors.safety-orange-pale}"
-    textColor: "{colors.safety-orange}"
+    backgroundColor: "{colors.signal-green-pale}"
+    textColor: "{colors.signal-green-text}"
     typography: "{typography.label}"
     rounded: "{rounded.square}"
     padding: "0.4rem 0.7rem"
@@ -108,7 +111,7 @@ components:
 
 **Creative North Star: "Operations Evidence Dossier"**
 
-This system makes an operating decision feel earned. Cool-gray dossier paper, deep navy ink, square exhibit tabs, and fine rules organize the page like a reviewed case file; verification green confirms evidence, while safety orange marks breaches, quarantine, overspend, and the final hold decision.
+This system makes an operating decision feel earned. Cool-gray dossier paper, deep navy ink, square exhibit tabs, and fine rules organize the page like a reviewed case file; dark verification green confirms evidence, while bright signal green marks breaches, quarantine, overspend, and the final hold decision.
 
 The visual density is analytical rather than decorative. Condensed headlines deliver conclusions, mono labels identify measurements and procedural evidence, and the workhorse sans keeps explanations readable in English and Traditional Chinese. The system explicitly rejects the generic portfolio dashboard: evidence remains sequential, traceable, and visibly tied to the decision.
 
@@ -117,7 +120,7 @@ The visual density is analytical rather than decorative. Condensed headlines del
 - Three-part dossier shell with a persistent evidence index, central case file, and decision rail.
 - Flat paper surfaces separated by fine rules rather than floating dashboard cards.
 - Square controls and clipped exhibit tabs with restrained industrial geometry.
-- Verification green and safety orange used only to communicate evidence state.
+- Dark verification green and bright signal green used only to communicate evidence state.
 - Responsive evidence navigation, reduced-motion support, and visible keyboard focus.
 
 ## Colors
@@ -136,8 +139,8 @@ The palette is a cool, low-saturation paper-and-ink system with two tightly cont
 
 ### Tertiary
 
-- **Safety Orange:** Breaches, quarantined records, budget overrun, active exhibit markers, and the final redesign-before-scale stamp.
-- **Safety Orange Pale:** Breach-row background that exposes risk without overpowering the ledger.
+- **Bright Signal Green:** Breaches, quarantined records, budget overrun, active exhibit markers, and the final redesign-before-scale stamp.
+- **Signal Green Pale:** Breach-row background that exposes risk without overpowering the ledger.
 
 ### Neutral
 
@@ -150,7 +153,7 @@ The palette is a cool, low-saturation paper-and-ink system with two tightly cont
 
 ### Named Rules
 
-**The Evidence-State Rule.** Green means verified or passing; orange means breach, quarantine, cost, or stop. Never use either as decoration.
+**The Evidence-State Rule.** Dark green means verified or passing; bright signal green means breach, quarantine, cost, or stop. Labels, position, and shape reinforce the distinction so color is never the only cue.
 
 **The Navy Authority Rule.** Deep navy owns structure and primary action; it is not a generic accent sprayed across data.
 
@@ -182,7 +185,7 @@ The desktop shell is a bounded three-column grid: a 17rem sticky evidence index,
 
 At 1260px, the index narrows to 14.5rem and the decision rail disappears. At 860px, the shell becomes one column: a 3.7rem sticky mobile header and a horizontally scrolling evidence navigation replace the desktop index while exhibit subgrids collapse. At 560px, body copy drops to 14px, actions stack, ledgers simplify, and dense plots become single-column reading sequences.
 
-The data-cleaning flow is the signature spatial moment: raw and trusted totals frame a dense narrowing line field, while the quarantine branch exits in safety orange. On mobile, the flow rotates into a vertical chain without changing its evidence order. Print removes navigation, controls, and the decision rail, leaving flat, break-safe exhibits.
+The data-cleaning flow is the signature spatial moment: raw and trusted totals frame a dense narrowing line field, while the quarantine branch exits in bright signal green. On mobile, the flow rotates into a vertical chain without changing its evidence order. Print removes navigation, controls, and the decision rail, leaving flat, break-safe exhibits.
 
 **The Evidence-Order Rule.** Responsive changes may reflow evidence but must not reorder the path from decision to cleaning, experiment, guardrails, budget, SQL, and artifacts.
 
@@ -223,7 +226,7 @@ The system is overwhelmingly square: exhibits, actions, switches, ledger rows, c
 ### Evidence Navigation
 
 - **Style:** Deep navy rail with fine internal rules, compact line icons, label and sublabel, and mono exhibit numbers.
-- **Hover / Active:** Hover uses layered navy; the active item gains a deeper navy field and a 3px safety-orange marker.
+- **Hover / Active:** Hover uses layered navy; the active item gains a deeper navy field and a 3px bright-green marker.
 - **Behavior:** IntersectionObserver updates the active location while scrolling; mobile converts the rail into a horizontal sticky evidence strip.
 
 ### Exhibits and Exhibit Tabs
@@ -236,12 +239,12 @@ The system is overwhelmingly square: exhibits, actions, switches, ledger rows, c
 ### Evidence Ledgers
 
 - **Style:** Rule-separated rows, sans labels, mono values, and condensed totals.
-- **Pass / Breach:** Verification green marks passing status; a safety-orange-pale row and safety-orange values mark a breach.
+- **Pass / Breach:** Dark verification green marks passing status; a pale signal-green row and bright-green values mark a breach.
 - **Responsive behavior:** Columns compress at tablet width, then the status moves to a full-width final line on narrow phones.
 
 ### Decision Stamp
 
-- **Style:** Two-pixel safety-orange border and text, bold condensed uppercase copy, centered with a slight counter-clockwise rotation.
+- **Style:** Two-pixel bright-green border with accessible dark-green text, bold condensed uppercase copy, centered with a slight counter-clockwise rotation.
 - **Purpose:** The final operating disposition only; it is not a reusable promotional badge.
 
 ### SQL Evidence Panel
@@ -255,13 +258,13 @@ The system is overwhelmingly square: exhibits, actions, switches, ledger rows, c
 ### Do:
 
 - **Do** lead with the operating decision, then keep every visual claim traceable through the evidence sequence.
-- **Do** reserve verification green for passed or trusted evidence and safety orange for risk or stop states.
+- **Do** reserve dark verification green for passed or trusted evidence and bright signal green for risk or stop states.
 - **Do** keep exhibits flat, square, ruled, and visibly part of one dossier.
 - **Do** preserve keyboard focus, reduced-motion behavior, bilingual type fallbacks, and the mobile evidence order.
 
 ### Don't:
 
 - **Don't** turn the case study into a generic portfolio dashboard of rounded, floating cards.
-- **Don't** use green or orange as decorative brand color without evidence-state meaning.
+- **Don't** use either green as decorative brand color without evidence-state meaning.
 - **Don't** add pill controls, soft gradients, decorative texture, or unsupported input and dialog patterns.
 - **Don't** hide the synthetic-data disclosure or separate a conclusion from its underlying repository evidence.

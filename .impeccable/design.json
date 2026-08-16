@@ -52,9 +52,9 @@
     {
       "name": "Evidence Navigation Item",
       "kind": "nav",
-      "description": "A ruled evidence-index row whose active state exposes the current exhibit with safety orange.",
+      "description": "A ruled evidence-index row whose active state exposes the current exhibit with bright signal green.",
       "html": "<nav class=\"ds-evidence-nav\" aria-label=\"Case sections\"><a class=\"ds-evidence-link is-active\" href=\"#summary\"><span>Decision<small>Conclusion and gate</small></span><b>01</b></a></nav>",
-      "css": ".ds-evidence-nav { width: 17rem; padding: 1rem; background: var(--ink); color: #dfe8ec; } .ds-evidence-link { position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: .7rem; min-height: 3.75rem; padding: .65rem .7rem; border-bottom: 1px solid #294761; color: inherit; text-decoration: none; transition: background-color 180ms ease-out, color 180ms ease-out; } .ds-evidence-link span { font-size: .82rem; font-weight: 600; line-height: 1.25; } .ds-evidence-link small { display: block; margin-top: .18rem; color: #9db0bc; font-size: .75rem; font-weight: 400; } .ds-evidence-link b { color: #93a9b7; font-family: var(--mono); font-size: .75rem; font-weight: 400; } .ds-evidence-link:hover { background: #173a5b; } .ds-evidence-link.is-active { background: #1f4a73; color: #fff; } .ds-evidence-link.is-active::before { content: \"\"; position: absolute; left: 0; width: 3px; height: 2rem; background: var(--orange); } .ds-evidence-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }"
+      "css": ".ds-evidence-nav { width: 17rem; padding: 1rem; background: var(--ink); color: #dfe8ec; } .ds-evidence-link { position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: .7rem; min-height: 3.75rem; padding: .65rem .7rem; border-bottom: 1px solid rgba(255,255,255,.12); color: inherit; text-decoration: none; transition: background-color 180ms ease-out, color 180ms ease-out; } .ds-evidence-link span { font-size: .82rem; font-weight: 600; line-height: 1.25; } .ds-evidence-link small { display: block; margin-top: .18rem; color: #9db0bc; font-size: .75rem; font-weight: 400; } .ds-evidence-link b { color: #93a9b7; font-family: var(--mono); font-size: .75rem; font-weight: 400; } .ds-evidence-link:hover, .ds-evidence-link.is-active { background: #112233; color: #fff; } .ds-evidence-link.is-active::before { content: \"\"; position: absolute; left: 0; width: 3px; height: 2rem; background: var(--orange); } .ds-evidence-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }"
     },
     {
       "name": "Exhibit Card",
@@ -83,25 +83,25 @@
     {
       "name": "Decision Stamp",
       "kind": "custom",
-      "description": "The singular safety-orange disposition stamp used in the fixed decision rail.",
+      "description": "The singular bright-green disposition stamp used in the fixed decision rail.",
       "html": "<div class=\"ds-decision-stamp\">Redesign<br>before scale</div>",
       "css": ".ds-decision-stamp { max-width: 16rem; padding: 1.1rem .7rem; border: 2px solid var(--orange); color: var(--orange); text-align: center; font-family: var(--display); font-size: clamp(2rem,2.8vw,2.8rem); font-weight: 800; line-height: .95; text-transform: uppercase; transform: rotate(-1deg); }"
     }
   ],
   "narrative": {
     "northStar": "Operations Evidence Dossier",
-    "overview": "This system makes an operating decision feel earned. Cool-gray dossier paper, deep navy ink, square exhibit tabs, and fine rules organize the page like a reviewed case file; verification green confirms evidence, while safety orange marks breaches, quarantine, overspend, and the final hold decision.\n\nThe visual density is analytical rather than decorative. Condensed headlines deliver conclusions, mono labels identify measurements and procedural evidence, and the workhorse sans keeps explanations readable in English and Traditional Chinese. The system explicitly rejects the generic portfolio dashboard: evidence remains sequential, traceable, and visibly tied to the decision.",
+    "overview": "This system makes an operating decision feel earned. Cool-gray dossier paper, deep navy ink, square exhibit tabs, and fine rules organize the page like a reviewed case file; dark verification green confirms evidence, while bright signal green marks breaches, quarantine, overspend, and the final hold decision.\n\nThe visual density is analytical rather than decorative. Condensed headlines deliver conclusions, mono labels identify measurements and procedural evidence, and the workhorse sans keeps explanations readable in English and Traditional Chinese. The system explicitly rejects the generic portfolio dashboard: evidence remains sequential, traceable, and visibly tied to the decision.",
     "keyCharacteristics": [
       "Three-part dossier shell with a persistent evidence index, central case file, and decision rail.",
       "Flat paper surfaces separated by fine rules rather than floating dashboard cards.",
       "Square controls and clipped exhibit tabs with restrained industrial geometry.",
-      "Verification green and safety orange used only to communicate evidence state.",
+      "Dark verification green and bright signal green used only to communicate evidence state.",
       "Responsive evidence navigation, reduced-motion support, and visible keyboard focus."
     ],
     "rules": [
       {
         "name": "The Evidence-State Rule",
-        "body": "Green means verified or passing; orange means breach, quarantine, cost, or stop. Never use either as decoration.",
+        "body": "Dark green means verified or passing; bright signal green means breach, quarantine, cost, or stop. Labels, position, and shape reinforce the distinction.",
         "section": "colors"
       },
       {
@@ -137,13 +137,13 @@
     ],
     "dos": [
       "Do lead with the operating decision, then keep every visual claim traceable through the evidence sequence.",
-      "Do reserve verification green for passed or trusted evidence and safety orange for risk or stop states.",
+      "Do reserve dark verification green for passed or trusted evidence and bright signal green for risk or stop states.",
       "Do keep exhibits flat, square, ruled, and visibly part of one dossier.",
       "Do preserve keyboard focus, reduced-motion behavior, bilingual type fallbacks, and the mobile evidence order."
     ],
     "donts": [
       "Don't turn the case study into a generic portfolio dashboard of rounded, floating cards.",
-      "Don't use green or orange as decorative brand color without evidence-state meaning.",
+      "Don't use either green as decorative brand color without evidence-state meaning.",
       "Don't add pill controls, soft gradients, decorative texture, or unsupported input and dialog patterns.",
       "Don't hide the synthetic-data disclosure or separate a conclusion from its underlying repository evidence."
     ]

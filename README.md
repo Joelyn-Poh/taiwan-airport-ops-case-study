@@ -6,6 +6,8 @@ An independent, synthetic-data portfolio project about ride-hailing platform ope
 
 **Website:** [Explore the plain-language Traditional Chinese report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
 
+**Plain-language English version:** [Read the English personal learning report](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/en/)
+
 **Professional English version:** [Open the operations evidence portfolio](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
 > **Business question:** With a fixed eight-week budget, which arriving travelers should receive which airport reward in order to create incremental trips and contribution without harming pickup reliability?

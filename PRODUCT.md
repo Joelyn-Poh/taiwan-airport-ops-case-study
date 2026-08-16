@@ -28,7 +28,7 @@ The site is evaluated as part of a GitHub portfolio. Reviewers may arrive from a
 
 ## Capabilities and Constraints
 
-- The plain-language Traditional Chinese personal learning report is the default GitHub Pages entry point.
+- The plain-language Traditional Chinese personal learning report is the default GitHub Pages entry point, with a matching plain-language English version at `/en/`.
 - A professional English-first evidence portfolio remains available at `/portfolio/`, with its Traditional Chinese language switch preserved.
 - Both presentation versions must share the same verified metrics, conclusions, and evidence links.
 - All operational data is synthetic and must be labeled as such.

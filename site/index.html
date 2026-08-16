@@ -22,9 +22,10 @@
 
   <header class="mobile-header">
     <a href="#top" aria-label="回到報告頂端">個人學習專題</a>
-    <button class="contents-toggle" type="button" aria-expanded="false" aria-controls="chapter-index">
-      章節目錄
-    </button>
+    <div class="mobile-actions">
+      <a class="mobile-language" href="en/" lang="en" hreflang="en">EN</a>
+      <button class="contents-toggle" type="button" aria-expanded="false" aria-controls="chapter-index">章節目錄</button>
+    </div>
   </header>
 
   <div class="reading-progress" aria-hidden="true"><span></span></div>
@@ -39,6 +40,11 @@
           <div><dt>方法</dt><dd>SQL / 合成資料</dd></div>
           <div><dt>狀態</dt><dd>專題結案</dd></div>
         </dl>
+      </div>
+
+      <div class="language-switch" aria-label="語言版本">
+        <span aria-current="page">中文</span>
+        <a href="en/" lang="en" hreflang="en">EN</a>
       </div>
 
       <nav class="chapter-nav" aria-label="章節導覽">
