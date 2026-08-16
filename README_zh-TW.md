@@ -6,6 +6,8 @@
 
 **網站版：**[查看個人學習專題網站](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/)
 
+**英文白話版：**[查看英文個人學習專題](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/en/)
+
 **英文專業版：**[查看營運分析作品集](https://joelyn-poh.github.io/taiwan-airport-ops-case-study/portfolio/)
 
 > 核心問題：在固定八週預算下，應該提供哪一種機場叫車優惠，才能增加完成行程與後續回訪，同時不犧牲機場接送品質？
