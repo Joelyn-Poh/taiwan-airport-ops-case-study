@@ -12,7 +12,7 @@ Delegated: plain static HTML, CSS, and JavaScript so the portfolio can run direc
 
 ## Users
 
-The primary user is an Uber Taiwan Mobility hiring manager or interviewer reviewing the candidate's Operations Specialist portfolio under limited time. Their job is to understand the business problem, assess the analytical judgment, and verify the SQL and supporting evidence.
+The primary user is a mobility operations hiring manager, interviewer, instructor, or general reader reviewing the case study under limited time. Their job is to understand the business problem, assess the analytical judgment, and verify the SQL and supporting evidence.
 
 ## Product Purpose
 
@@ -28,12 +28,13 @@ The site is evaluated as part of a GitHub portfolio. Reviewers may arrive from a
 
 ## Capabilities and Constraints
 
-- English is the default presentation language for interview review; a complete Traditional Chinese version is available through an in-page language switch.
-- Both language versions must share the same verified metrics, conclusions, and evidence links.
+- The student-friendly Traditional Chinese report is the default GitHub Pages entry point.
+- A professional English-first evidence portfolio remains available at `/portfolio/`, with its Traditional Chinese language switch preserved.
+- Both presentation versions must share the same verified metrics, conclusions, and evidence links.
 - All operational data is synthetic and must be labeled as such.
 - The site must work as a static GitHub Pages deployment.
 - The existing reports, SQL, tests, Excel dashboard, and repository history remain the source of truth.
-- The site must not imply affiliation with Uber or access to Uber internal data.
+- The site must not imply affiliation with any commercial ride-hailing platform or access to proprietary company data.
 
 ## Evidence on Hand
 
@@ -42,7 +43,7 @@ The site is evaluated as part of a GitHub portfolio. Reviewers may arrive from a
 - `report/executive_summary_en.md`: English summary.
 - `dashboard/airport_campaign_dashboard.xlsx` and `dashboard/screenshots/dashboard_preview.png`: operating dashboard and preview.
 - `sql/`, `tests/`, `outputs/`, and `docs/`: reproducible analysis and operating artifacts.
-- No personal portrait, customer testimonial, or real Uber data is available; future work must not fabricate them.
+- No personal portrait, customer testimonial, or real platform data is available; future work must not fabricate them.
 
 ## Product Principles
 

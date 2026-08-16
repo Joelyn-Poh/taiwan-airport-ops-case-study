@@ -74,7 +74,7 @@ def report_markdown() -> str:
 
 ## 桃園機場旅遊合作 SQL 專題：完整結案報告
 
-> 專題定位：大學期間製作的個人資料分析專題；資料完全合成，用於展示 Uber Taiwan Mobility Operations Specialist 所需的 SQL、活動營運與跨部門思維。
+> 專題定位：大學期間製作的個人資料分析專題；資料完全合成，用於展示叫車平台營運分析所需的 SQL、活動營運與跨部門思維。
 
 ## 摘要
 
@@ -192,7 +192,7 @@ def english_summary() -> str:
 
 ## From Dirty Ride Data to Operations Decisions
 
-An independent, synthetic-data university portfolio project for the Uber Taiwan Mobility Operations Specialist role.
+An independent, synthetic-data university portfolio project about ride-hailing platform operations.
 
 ### Decision
 
@@ -213,7 +213,7 @@ Do not fully scale either current reward. Keep a Control holdout, reduce the sub
 - `report/`: Traditional Chinese closeout report and PDF.
 - `docs/`: campaign brief, launch checklist, monitoring playbook, source notes, and definitions.
 
-All operational records are synthetic. This repository is not affiliated with Uber.
+All operational records are synthetic and do not represent any real ride-hailing platform.
 """
 
 
@@ -251,9 +251,9 @@ def table(headers: list[str], rows: list[list[str]], widths: list[float], s: dic
 
 def footer(canvas, doc) -> None:
     canvas.saveState()
-    canvas.setFont("STSong-Light", 7.5)
+    canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(colors.HexColor("#627D98"))
-    canvas.drawString(18 * mm, 10 * mm, "Uber Taiwan Airport Operations SQL Case Study | Synthetic educational data")
+    canvas.drawString(18 * mm, 10 * mm, "Taiwan Airport Ride-Hailing Operations SQL Case Study | Synthetic educational data")
     canvas.drawRightString(A4[0] - 18 * mm, 10 * mm, f"Page {doc.page}")
     canvas.restoreState()
 
@@ -271,7 +271,7 @@ def build_pdf() -> None:
         Spacer(1, 7 * mm),
         paragraph("桃園機場旅遊合作 SQL 專題｜完整結案報告", s["subtitle"]),
         Spacer(1, 12 * mm),
-        paragraph("大學個人專題｜合成資料｜用於 Uber Taiwan Mobility Operations Specialist 面試作品集", s["subtitle"]),
+        paragraph("大學個人專題｜合成資料｜台灣機場叫車平台營運分析", s["subtitle"]),
         PageBreak(),
         paragraph("摘要與結論", s["h1"]),
         paragraph("本案以髒資料模擬機場旅客叫車活動。經 SQL 清洗、Cohort 圈選、優惠資格核驗與 Intent-to-Treat 比較後，兩個現行優惠方案均不適合直接全面擴量。建議保留 Control、降低補貼或爭取合作夥伴共同出資，並對機場 ETA、取消率與預算建立每日監控。", s["body"]),

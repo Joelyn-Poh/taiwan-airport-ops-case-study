@@ -8,7 +8,7 @@ raw_users,fraud_exclusion,boolean,Eligibility exclusion flag,false
 raw_users,ingested_at,timestamptz,Warehouse receipt time,2025-01-08T09:35:00+08:00
 raw_drivers,driver_id,string,Synthetic driver identifier,D000001
 raw_drivers,join_at,timestamptz,Driver onboarding time,2024-06-01T09:00:00+08:00
-raw_drivers,service_tier,string,Eligible vehicle service tier,UberX
+raw_drivers,service_tier,string,Eligible vehicle service tier,Standard
 raw_drivers,airport_eligible,boolean,Airport trip eligibility,true
 raw_partner_bookings,booking_id,string,Synthetic partner booking identifier,B000001
 raw_partner_bookings,user_id,string,Booked traveller identifier,U000001
