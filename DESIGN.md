@@ -2,9 +2,9 @@
 name: Taiwan Airport Ride-Hailing Operations Case Study
 description: An auditable operations evidence dossier that traces synthetic airport ride data into a guarded campaign decision.
 colors:
-  deep-navy-ink: "#131c19"
+  deep-navy-ink: "#030506"
   layered-navy: "#183b5c"
-  menu-state: "#112233"
+  menu-state: "#131c19"
   rail-rule: "rgba(255,255,255,0.12)"
   dossier-paper: "#f3f4f1"
   cool-paper: "#e8ecec"
